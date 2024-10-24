@@ -1,0 +1,7 @@
+--existing features
+
+--adding features to the bank
+    database, sort of. use txt files to store data
+        -loadData(), saveData(), serializeData(), deserializeData()
+--database error 
+    -10/24.24 not updatiing properly

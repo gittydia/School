@@ -1,15 +1,16 @@
 package bank;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
-public class  Gprog{
+public  class  Gprog{
 
-    class Account {
+
+    static class Account {
         String firstName;
         String surname;
         String username;
-        float balance;
         String password;
+        Double balance;
     }
 
     abstract class User {
@@ -40,7 +41,7 @@ public class  Gprog{
         private void clearScreen() {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-        }
+        } 
 
         private void printAdminMenu() {
             System.out.println("\t\t\t ===================================================================== ");
@@ -126,6 +127,8 @@ public class  Gprog{
             System.out.print("\t Enter your password : ");
             String inputPassword = scanner.next();
 
+            BankingSystem.loadAccounts();
+
             boolean found = false;
 
             for (Account account : BankingSystem.accounts) {
@@ -135,11 +138,10 @@ public class  Gprog{
                     accountMenu();
                     found = true;
                     break;
+                }if (!found) {
+                    System.out.println("Invalid username or password.");
+                    
                 }
-            }
-
-            if (!found) {
-                System.out.println("Invalid username or password. Please try again.");
             }
         }
 
@@ -194,11 +196,12 @@ public class  Gprog{
         private void deposit() {
             System.out.print("\t Enter the amount : ");
             try {
-                float amount = scanner.nextFloat();
+                double amount = scanner.nextDouble();
                 if (amount > 0) {
                     currentUser.balance += amount;
                     System.out.println(" Deposit successful! New balance: " + currentUser.balance);
                     BankingSystem.showAllAccounts();
+                    BankingSystem.UpdateBalance();
                 } else {
                     System.out.println("Invalid amount.");
                 }
@@ -211,12 +214,13 @@ public class  Gprog{
         private void withdraw() {
             System.out.print("\t Enter the amount to withdraw: ");
             try {
-                float amount = scanner.nextFloat();
+                double amount = scanner.nextDouble();
                 if (amount > 0) {
                     if (amount <= currentUser.balance) {
                         currentUser.balance -= amount;
                         System.out.println("Withdrawal successful! New balance: " + currentUser.balance);
                         BankingSystem.showAllAccounts();
+                        BankingSystem.UpdateBalance();
                     } else {
                         System.out.println("Insufficient funds.");
                     }
@@ -231,6 +235,7 @@ public class  Gprog{
 
         private void checkBalance() {
             System.out.println("Balance: " + currentUser.balance);
+            BankingSystem.UpdateBalance();
         }
 
         private void pauseForUser() {
@@ -246,12 +251,26 @@ public class  Gprog{
 
         public static void main(String[] args) {
             intro();
+            BankingSystem.loadAccounts();
             char choice;
             do {
                 choice = getUserTypeChoice();
-                handleUserTypeChoice(choice);
+                switch (choice) {
+                    case 'y':
+                    case 'Y':
+                        new Gprog().new UserF().displayMenu();                       
+                        break;
+                    case 'a':
+                    case 'A':
+                        handleAdminLogin();
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                        break;
+                }
             } while (choice != 'n' && choice != 'N');
         }
+
 
         private static void intro() {
             System.out.println("\t\t\t\t ------------------------------------------------- ");
@@ -262,7 +281,7 @@ public class  Gprog{
             scanner.nextLine();
             clearScreen();
         }
-
+ 
         private static void clearScreen() {
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -273,17 +292,6 @@ public class  Gprog{
             return scanner.next().charAt(0);
         }
 
-        private static void handleUserTypeChoice(char choice) {
-            if (choice == 'y' || choice == 'Y') {
-                new Gprog().new UserF().displayMenu();
-            } else if (choice == 'n' || choice == 'N') {
-                System.out.println("Please contact the admin to open an account.");
-            } else if (choice == 'a' || choice == 'A') {
-                handleAdminLogin();
-            } else {
-                System.out.println("Invalid choice.");
-            }
-        }
 
         private static void handleAdminLogin() {
             Admin admin = new Gprog().new Admin();
@@ -309,9 +317,19 @@ public class  Gprog{
                 System.out.println("You have exhausted all attempts. Access denied.");
             }
         }
+        public static File accountsFile;
+        static{
+            try{
+                accountsFile = new File("data.txt"); 
+                loadAccounts();
+            }catch(Exception e){
+                System.err.println("Error loading accounts: " + e.getMessage());
+            }
+            
+        }
 
         static void create() {
-            Account newAccount = new Gprog().new Account();
+            Account newAccount = new Account();
             System.out.print("\t First name : ");
             newAccount.firstName = scanner.next();
             System.out.print("\t Surname : ");
@@ -320,8 +338,10 @@ public class  Gprog{
             newAccount.username = scanner.next();
             System.out.print("\t Create a password : ");
             newAccount.password = scanner.next();
-            newAccount.balance = 0;
+            System.out.print("\t Initial deposit : ");
+            newAccount.balance = scanner.nextDouble();
             accounts.add(newAccount);
+            saveAccounts();
             System.out.println("Account created successfully.");
         }
 
@@ -330,10 +350,69 @@ public class  Gprog{
             System.out.println("\t\t\t                            ALL ACCOUNTS                             ");
             System.out.println("\t\t\t ===================================================================== ");
             System.out.println("\t\t\t | First Name | Surname | Username | Balance |");
+            System.out.println("\t\t\t ===================================================================== ");
             for (Account account : accounts) {
                 System.out.println("\t\t\t | " + account.firstName + " | " + account.surname + " | " + account.username + " | " + account.balance + " |");
+
             }
-            System.out.println("\t\t\t ===================================================================== ");
+            scanner.nextLine();
+            clearScreen();
+        }
+
+        public static void saveAccounts(){
+            try(BufferedWriter writer = new BufferedWriter(new FileWriter(accountsFile))){
+                for(Account account : accounts){
+                    writer.write(serialized(account));
+                    writer.newLine();
+                }
+            }catch(IOException e){
+                System.err.println("Error saving accounts: " + e.getMessage());
+            }
+        }
+
+        //account loading/ reading
+        public static void loadAccounts(){
+            try(BufferedReader reader = new BufferedReader(new FileReader(accountsFile))){
+                String line;
+                while((line = reader.readLine()) != null){
+                    String[] data = line.split(",");
+                    accounts.add(deserialized(data));
+                }
+            }catch(IOException e){
+                System.err.println("Error loading accounts: " + e.getMessage());
+            }
+        }
+        public static void UpdateBalance(){
+            try{
+                BufferedWriter writer = new BufferedWriter(new FileWriter(accountsFile));
+
+                for (Account account : accounts) {
+                    String serializedData = serialized(account);
+                    writer.write(serializedData);
+                    writer.newLine();
+                }
+                writer.close();
+            }catch(IOException e){
+                System.err.println("Error updating balance: " + e.getMessage());
+            }
+
+        }
+
+        public static String serialized(Account account){
+            return account.firstName + "," +
+                    account.surname + "," +
+                    account.username + "," +
+                    account.password + "," +
+                    account.balance + ",";
+        }
+        private static Account deserialized(String[] data){
+            Account account = new Account();
+            account.firstName = data[0];
+            account.surname = data[1];
+            account.username = data[2];
+            account.password = data[3];
+            account.balance = Double.parseDouble(data[4]);
+            return account;
         }
     }
 }
