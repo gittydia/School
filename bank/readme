@@ -2,6 +2,11 @@
 
 --adding features to the bank
     database, sort of. use txt files to store data
-        -loadData(), saveData(), serializeData(), deserializeData()
+        -loadData(), saveData(), serializeData(), deserializeData(), etc..
+
+--preseting features
+    -transaction history
+    
 --database error 
-    -10/24.24 not updatiing properly
+    -10/24.24 not updatiing properly(SOLVED)
+

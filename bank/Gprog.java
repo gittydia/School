@@ -158,7 +158,7 @@ public  class  Gprog{
                     System.out.println("Invalid input. Please enter a number.");
                     option = 0;
                 }
-            } while (option != 4);
+            } while (isValidInput);
         }
 
         private void printAccountMenu() {
@@ -171,6 +171,8 @@ public  class  Gprog{
             System.out.println("\t |3| Check Balance     ");
             System.out.println("\t |4| Exit              ");
         }
+
+        private boolean isValidInput = true;
 
         private void handleAccountOption(int option) {
             switch (option) {
@@ -185,7 +187,7 @@ public  class  Gprog{
                     break;
                 case 4:
                     System.out.println("Bye! See you again.");
-                    pauseForUser();
+                    isValidInput = false;
                     break;
                 default:
                     System.out.println("Invalid choice! Please try again.");
@@ -200,8 +202,9 @@ public  class  Gprog{
                 if (amount > 0) {
                     currentUser.balance += amount;
                     System.out.println(" Deposit successful! New balance: " + currentUser.balance);
-                    BankingSystem.showAllAccounts();
+                    System.out.println("Updating balance.....");
                     BankingSystem.UpdateBalance();
+                    System.out.println("Account balance updated successfully.");
                 } else {
                     System.out.println("Invalid amount.");
                 }
@@ -219,8 +222,9 @@ public  class  Gprog{
                     if (amount <= currentUser.balance) {
                         currentUser.balance -= amount;
                         System.out.println("Withdrawal successful! New balance: " + currentUser.balance);
-                        BankingSystem.showAllAccounts();
+                        System.out.println("Updating balance.....");
                         BankingSystem.UpdateBalance();
+                        System.out.println("Account balance updated successfully.");
                     } else {
                         System.out.println("Insufficient funds.");
                     }
@@ -235,7 +239,7 @@ public  class  Gprog{
 
         private void checkBalance() {
             System.out.println("Balance: " + currentUser.balance);
-            BankingSystem.UpdateBalance();
+
         }
 
         private void pauseForUser() {
@@ -325,7 +329,7 @@ public  class  Gprog{
             }catch(Exception e){
                 System.err.println("Error loading accounts: " + e.getMessage());
             }
-            
+
         }
 
         static void create() {
@@ -340,9 +344,23 @@ public  class  Gprog{
             newAccount.password = scanner.next();
             System.out.print("\t Initial deposit : ");
             newAccount.balance = scanner.nextDouble();
-            accounts.add(newAccount);
-            saveAccounts();
-            System.out.println("Account created successfully.");
+
+            boolean exists = false;
+            for (Account account : accounts) {
+                if (account.username.equals(newAccount.username)) {
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists) {
+                accounts.add(newAccount);
+                saveAccounts();
+                System.out.println("Account created successfully.");  
+            }else{
+                System.out.println("Username already exists. Please try again.");
+            }
+
+            
         }
 
         static void showAllAccounts() {
@@ -355,6 +373,7 @@ public  class  Gprog{
                 System.out.println("\t\t\t | " + account.firstName + " | " + account.surname + " | " + account.username + " | " + account.balance + " |");
 
             }
+            loadAccounts();
             scanner.nextLine();
             clearScreen();
         }
@@ -362,7 +381,8 @@ public  class  Gprog{
         public static void saveAccounts(){
             try(BufferedWriter writer = new BufferedWriter(new FileWriter(accountsFile))){
                 for(Account account : accounts){
-                    writer.write(serialized(account));
+                    String serializedData = serialized(account);
+                    writer.write(serializedData);
                     writer.newLine();
                 }
             }catch(IOException e){
@@ -376,6 +396,7 @@ public  class  Gprog{
                 String line;
                 while((line = reader.readLine()) != null){
                     String[] data = line.split(",");
+                    accounts.clear();
                     accounts.add(deserialized(data));
                 }
             }catch(IOException e){
@@ -385,13 +406,13 @@ public  class  Gprog{
         public static void UpdateBalance(){
             try{
                 BufferedWriter writer = new BufferedWriter(new FileWriter(accountsFile));
-
                 for (Account account : accounts) {
                     String serializedData = serialized(account);
                     writer.write(serializedData);
                     writer.newLine();
                 }
                 writer.close();
+                System.out.println("Balance updated successfully.");
             }catch(IOException e){
                 System.err.println("Error updating balance: " + e.getMessage());
             }
