@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My interest Website</title>
+    <style>
+        body {
+            font-family: monospace;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: red;      
+        }
+
+  
+        header {
+            background-color: red;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        main {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+            
+        }
+        
+       
+        .formula1 {
+        position: relative;
+        bottom: 50px;
+        left: -8px;
+        font-family: monospace;
+        font-size: 20px;
+        margin-bottom: 40px;
+        border-bottom: 2px solid #ff9900;
+        }
+        .logo-card{
+            background-color: #000000;
+            padding: 40px;
+            width: 500px;
+            height: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            border-radius: 24px;
+            
+        }
+        .logo-card img{
+            position: relative;
+            bottom: 30px;
+            left: -8px;
+            width: 100px;
+
+        }
+        .logo-card:hover{
+            background-color: #ff9900;
+        }
+  
+      
+        .featured-event {
+            background-color:transparent;
+            padding: 5px;
+        }
+        .featured-event button{
+            margin-right: 100px;
+            margin-bottom: 10px;
+        }
+        
+        .program-section {
+            background-color: #000000;
+            padding: 40px;
+            width: 500px;
+            height: 500px;
+            margin-bottom: 20px;
+        }
+        .program-section img{
+            position: relative;
+            bottom: 30px;
+            left: -8px;
+            width: 100px;
+        }
+
+        
+        .event-card {
+            background-color: #000000;
+            padding: 10px;
+            width: 200px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+
+        }
+        
+        h1, h2 {
+            color: #000000;
+            font-size: 40px;
+        }
+        
+        h3 {
+            line-height:1.5 ;
+            font-size: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ff9900;
+
+        }
+        a {
+            color: orange;
+              text-decoration: none;
+
+        }
+        a:visited{
+            color: rgb(122, 19, 114);
+        }
+        p {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+        .text-left{
+            position: absolute;
+            left: 90px;
+            width: 200px;
+            height: auto;
+        }
+        
+        .cta-button {
+            background-color: transparent;
+            color: #000000;
+            border: none;
+            padding: 0px;
+            font-size: 20px;
+            font-family: monospace;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button::after{
+        content: '';
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: #070707;
+        margin-top: 5px;
+        }
+
+        .cta-button:hover {
+            background-color: orange;
+        }
+        .info-right {
+            position: absolute;
+            top: 40px;
+            left: 800px;
+            width: 200px;
+            height: auto;
+            color: black;
+            font-family: monospace;
+            width: 400px;
+            
+        }
+      
+        @media (min-width: 768px) {
+            .event-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        footer {
+            background-color: #111;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            bottom: -0
+            ;
+            width: 100%;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="featured-event">
+        <a href="cats.html">
+        <button class="cta-button">Cats</button> 
+        </a> 
+        <a href="kpop.html">    
+        <button class="cta-button">Kpop</button>
+        </a>
+        <a href="music.html">  
+        <button class="cta-button">Music</button>
+        </a>
+        <a href="manga.html">  
+        <button class="cta-button">Manga</button>
+        </a>
+        <a href="series.html">  
+        <button class="cta-button">Series</button>
+        </a>
+    </div>
+    <main> 
+         
+        <div class="logo-card" onclick="showInfo('formula1')">
+            <img src = "logo-F1-3836829222.png " 
+            width="70" height="60">
+            <div class="formula1">Formula 1</div>    
+        </div>
+        <div class="logo-card" onclick="showInfo('cars')">
+            <img src = "Porsche-Logo-3879986402.png " 
+            width="70" height="50">
+            <div class="formula1">Cars</div>     
+        </div>
+        <div class="logo-card" onclick="showInfo('books')">
+            <img src = "Book-Logo-PNG-Photos-3954521597.png " 
+            width="70" height="60">
+            <div class="formula1">Books</div>     
+        </div>
+        <div class="logo-card" onclick="showInfo('documentaries')">
+            <img src = "icons8-documentary-64.png " 
+            width="10" height="60">
+            <div class="formula1">Documentaries</div>     
+        </div>
+        <div class="info-right" id="info-display"></div>
+  
+    </main>
+        
+
+  
+    <script>
+
+        function showInfo(type) {
+            const infoDisplay = document.getElementById('info-display');
+            let infoContent = '';
+
+            if (type === 'formula1') {
+                infoContent = 
+                `
+                    <h2>Formula 1</h2>
+                    <p>As the highest class of international racing for single-seater formula racing cars, 
+                        Formula 1 is the pinnacle of motorsport and the world’s most prestigious motor racing competition. There really is nothing like it.
+                        It’s a team sport (it needs to be to change all 4 tyres on a car in under 2 seconds!), 
+                        but the drivers are more like fighter pilots than sportspeople. Battling extreme g-forces, 
+                        making daring decisions in the blink of an eye – and at 370km/h. To be the best, F1 drivers push themselves – and their incredibly innovative machines – to the very limit.</p>
+                    <img src = "redbull.png" width = "300">
+                    <h2>Redbull Racing</h2>
+                    <p>My favorite racing and driver is redbull and max verstappen</p>
+                    <p>Click here to know more about <a href="https://www.redbull.com/int-en/redbullracing">Redbull Racing</a></p>
+                `;
+            } else if (type === 'cars') {
+                infoContent = `
+                    <h2>Cars</h2>
+                    <p>Cars are a popular mode of transportation and come in various types, 
+                        including sports cars, sedans, and SUVs.</p>
+                    <p>My favorite cars are porsche 911, cayennne, land rover, and honda nsx</p>
+                    <p>Click here to know more about <a href="https://www.porsche.com/usa/">Porsche</a></p>
+                    <p>Click here to know more about <a href="https://www.landrover.com/index.html">Land Rover Defender</a></p>
+                    <p>Click here to know more about <a href="https://en.wikipedia.org/wiki/Honda_NSX">Honda Nsx</a></p>
+                `;
+            } else if (type === 'books') {
+                infoContent = `
+                    <h2>Favorite Story</h2>
+                    <p>Flower for Algernon <a href = "https://www.litcharts.com/lit/flowers-for-algernon/summary">click for preview.</a></p>
+                    <p>The Seven Husbands of Evelyn Hugo <a href = "https://www.litcharts.com/lit/the-seven-husbands-of-evelyn-hugo">click for preview.</a></p>
+                    <p>Clear and Muddy Loss of Love <a href = "https://www.novelupdates.com/series/clear-and-muddy-loss-of-love/">click for preview.</a></p>
+                    <h2>Favorite Poetry</h2>
+                    <p>For when she's feeling blue</p>
+                    <p>Red roses for my love</p>
+                    <p>In love with you</p>
+                    <br></br>
+                    <p>My Goodreads Account. <a href= "https://www.goodreads.com/user/show/169485891?ref=nav_profile_l">here.</a></p>
+                
+                `;
+            }else if (type === 'documentaries') {
+                infoContent = `
+                    <h2>Favorite Documentaries</h2>
+                    <a href = "https://youtu.be/068rdc75mHM?si=e23ZQbW796Mz7JmB"><p>Einstein's Quantum Riddle</a></p>
+                    <a href = "https://youtu.be/_8QxSCyWtFc?si=UlZAzzDcdLvCe6hc"><p>Basurero</a></p>
+                    <a href = "https://youtu.be/7yZK4b4JY0Q?si=7Z9ZQbW796Mz7JmB"><p>Inside the World's Toughest Prisons</a></p>
+                    <a href = "https://youtu.be/qgzEyaDGAkU?si=pi-590763xQNWxgp"><p>Kapalit ng Katahimikan</a></p>
+                    <a href = "https://youtu.be/jgaltnLfxo8?si=n_BamvSyWHLAibaJ"><p>Sex, Slavery, And Drugs in Bangladesh</a></p>
+                    <a href = "https://youtu.be/NMp2wm0VMUs?si=YiTxvXs-TLtDBepW"><p>Preying on Young Boys: Pakistan's Hidden Predators</a></p>
+                   
+                `;
+            }
+
+            infoDisplay.innerHTML = infoContent;
+        }
+    </script>
+</body>
+</html>
