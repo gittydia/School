@@ -149,7 +149,7 @@ p {
     background-color: orange;
 }
 .info-right {
-    position: fixed;
+    position: absolute;
     bottom: 150px;
     left: 800px;
     width: 400px;
