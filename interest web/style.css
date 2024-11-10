@@ -5,6 +5,7 @@ body {
     background-color: red;
     margin: 0;
     padding: 0; 
+    overflow: hidden;
 
     
 }
@@ -44,7 +45,7 @@ main {
     border-radius: 24px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;      
+    justify-content: flex-start;    
     
 }
 .logo-card img{
@@ -52,6 +53,7 @@ main {
     bottom: 30px;
     left: -8px;
     width: 100px;
+
 
 }
 .logo-card:hover{

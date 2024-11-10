@@ -79,14 +79,14 @@ function showInfo(type) {
         infoContent = `
             <h2>Favorite Team</h2>
             <img src = "redbull.png" width = "300">
-            <h2>Redbull Racing</h2>
+            <h2>Red bull Racing</h2>
             <p>Red Bull were no strangers to F1 - as sponsors - prior to formally entering as a works team in 2004. 
                 Nonetheless, the scale of their success over the following decade was staggering. 
                 After a first podium in 2006, the team hit their stride in 2009, claiming six victories and second 
                 in the constructors' standings. Over the next four seasons they were a tour de force, claiming 
                 consecutive title doubles between 2010 and 2013, with Sebastian Vettel emerging as the sport's youngest 
                 quadruple champion. Now they are recapturing that glory with an equally exciting talent – one named Max Verstappen…</p>
-            <p>Click here to know more about <a href="https://www.redbull.com/int-en/redbullracing">Redbull Racing</a></p>
+            <p>Click here to know more about <a href="https://www.redbull.com/int-en/redbullracing">Red bull Racing</a></p>
            
         `;
     }
