@@ -10,22 +10,29 @@
             font-family: monospace;
             line-height: 1.6;
             color: #ffffff;
-            background-color: red;      
+            background-color: red;
+
+            margin: 0;
+            padding: 0;
         }
 
         header {
             background-color: red;
             padding: 10px;
             text-align: center;
+            width: 100%;
         }
-        
+
         main {
             max-width: 1300px;
             margin: 0 auto;
             padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             
         }
-         
+
         .formula1 {
         position: relative;
         bottom: 50px;
@@ -43,6 +50,9 @@
             margin-bottom: 20px;
             text-align: left;
             border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            
             
         }
         .logo-card img{
@@ -122,7 +132,7 @@
             width: 200px;
             height: auto;
         }
-        
+
         .cta-button {
             background-color: transparent;
             color: #000000;
@@ -156,7 +166,7 @@
             overflow: auto;
              
         }
-                /* Hide scrollbar for WebKit browsers */
+        /* Hide scrollbar for WebKit browsers */
         .info-right::-webkit-scrollbar {
             display: none;
         }
@@ -166,7 +176,7 @@
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
         }
-        
+
       
         @media (min-width: 768px) {
             .event-grid {
@@ -191,19 +201,19 @@
     </style>
 </head>
 <body>
-    <div class="featured-event">
-        <a href="teams.html">
-        <button class="cta-button">Teams</button> 
-        </a> 
-        <a href="Drivers.html">    
-        <button class="cta-button">Drivers</button>
-        </a>
-        <a href="Dstandings.html">  
-        <button class="cta-button">Championship</button>
-        </a>
-        <a href="constructorship.html">  
-        <button class="cta-button">Constructorship</button>
-        </a>
+        <div class="featured-event">
+            <a href="teams.html">
+                <button class="cta-button">Teams</button>
+            </a>
+            <a href="Drivers.html">
+                <button class="cta-button">Drivers</button>
+            </a>
+            <a href="Dstandings.html">
+                <button class="cta-button">Championship</button>
+            </a>
+            <a href="constructorship.html">
+                <button class="cta-button">Constructorship</button>
+            </a>
         <a href="https://overtakefans.com/f1-race-archive/">  
         <button class="cta-button">Watch</button>
         </a>
@@ -219,12 +229,12 @@
             <img src = "logo-F1-3836829222.png " 
             width="70" height="60">
             <div class="formula1">Calendar</div>     
-        </div>
+            </div>
         <div class="logo-card" onclick="showInfo('Verstappen')">
             <img src = "logo-F1-3836829222.png " 
             width="70" height="60">
             <div class="formula1">Max Verstappen</div>     
-        </div>
+            </div>
         <div class="logo-card" onclick="showInfo('RB')">
             <img src = "logo-F1-3836829222.png" 
             width="10" height="60">
