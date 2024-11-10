@@ -149,15 +149,14 @@ p {
     background-color: orange;
 }
 .info-right {
-    position: absolute;
-    bottom: 150px;
+    position: relative;
+    bottom: 450px;
     left: 800px;
     width: 400px;
     height: 450px;
     color: black;
     font-family:monospace;
     overflow: auto;
-    position: sticky;
       
      
 }
