@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOST Scholarship Practice Test - 60 Questions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .test-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .test-info h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .info-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .progress-bar {
+            background: #ecf0f1;
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .subject-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #ecf0f1;
+            flex-wrap: wrap;
+        }
+        
+        .subject-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .subject-btn.math { background: #e74c3c; color: white; }
+        .subject-btn.science { background: #27ae60; color: white; }
+        .subject-btn.reading { background: #9b59b6; color: white; }
+        .subject-btn:hover { transform: translateY(-2px); }
+        
+        .test-content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            background: linear-gradient(45deg, #34495e, #2c3e50);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .section-header h2 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+        
+        .question {
+            background: #f8f9fa;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        .question:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .question-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .question-number {
+            background: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 15px;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .subject-tag {
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .subject-tag.math { background: #e74c3c; }
+        .subject-tag.science { background: #27ae60; }
+        .subject-tag.reading { background: #9b59b6; }
+        
+        .question-text {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        
+        .passage {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .option {
+            background: white;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: #3498db;
+            background: #f0f8ff;
+            transform: translateX(5px);
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .option.selected {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+        
+        .submit-section {
+            text-align: center;
+            padding: 30px;
+            border-top: 2px solid #ecf0f1;
+            background: #f8f9fa;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+            margin: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+        }
+        
+        .reset-btn {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            margin: 10px;
+        }
+        
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+        
+        .results {
+            display: none;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .score {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .score-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .subject-score {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #3498db;
+        }
+        
+        .explanation {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .correct { border-left-color: #27ae60 !important; }
+        .incorrect { border-left-color: #e74c3c !important; }
+        
+        .stats {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .test-content {
+                padding: 20px;
+            }
+            
+            .subject-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 DOST Scholarship Practice Test</h1>
+            <p>Complete 60-Question Practice Exam</p>
+        </div>
+        
+        <div class="test-info">
+            <h3>Test Information</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Total Questions:</strong> 60
+                </div>
+                <div class="info-item">
+                    <strong>Mathematics:</strong> 20 questions
+                </div>
+                <div class="info-item">
+                    <strong>Science:</strong> 20 questions
+                </div>
+                <div class="info-item">
+                    <strong>Reading:</strong> 20 questions
+                </div>
+                <div class="info-item">
+                    <strong>Time Limit:</strong> 180 minutes
+                </div>
+                <div class="info-item">
+                    <strong>Passing Score:</strong> 70%
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+        </div>
+        
+        <div class="subject-nav">
+            <button class="subject-btn math" onclick="scrollToSection('math')">📐 Mathematics</button>
+            <button class="subject-btn science" onclick="scrollToSection('science')">🧪 Science</button>
+            <button class="subject-btn reading" onclick="scrollToSection('reading')">📖 Reading</button>
+        </div>
+        
+        <div class="test-content" id="test-content">
+            <!-- Questions will be generated by JavaScript -->
+        </div>
+        
+        <div class="submit-section">
+            <div class="stats" id="stats">
+                Answered: <span id="answered-count">0</span>/60 questions
+            </div>
+            <button class="submit-btn" onclick="submitTest()">📊 Submit Test</button>
+            <button class="reset-btn" onclick="resetTest()">🔄 Reset Test</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score" id="score"></div>
+            <div class="score-breakdown" id="breakdown"></div>
+        </div>
+    </div>
+
+    <script>
+        const questions = {
+            math: [
+                {
+                    id: 1,
+                    text: "Simplify: 4x³ - 2x² + 7x - 3x³ + 5x² - 2x",
+                    options: ["x³ + 3x² + 5x", "7x³ + 3x² + 5x", "x³ + 3x² + 9x", "4x³ + 7x² + 5x"],
+                    correct: 0,
+                    explanation: "Combine like terms: (4x³ - 3x³) + (-2x² + 5x²) + (7x - 2x) = x³ + 3x² + 5x"
+                },
+                {
+                    id: 2,
+                    text: "Solve: 3^(x+1) = 81",
+                    options: ["x = 2", "x = 3", "x = 4", "x = 5"],
+                    correct: 1,
+                    explanation: "Since 81 = 3⁴, we have 3^(x+1) = 3⁴, so x+1 = 4, therefore x = 3"
+                },
+                {
+                    id: 3,
+                    text: "Solve the rational equation: (2x - 1)/(x + 3) = 5",
+                    options: ["x = 2", "x = 4", "x = 8", "x = 16"],
+                    correct: 2,
+                    explanation: "Cross multiply: 2x - 1 = 5(x + 3) = 5x + 15, so -16 = 3x, thus x = 8"
+                },
+                {
+                    id: 4,
+                    text: "Find the derivative of f(x) = 3x⁵ - 2x³ + x",
+                    options: ["3x⁴ - 2x² + 1", "15x⁴ - 6x² + 1", "15x⁴ - 6x² + x", "15x⁵ - 6x³ + 1"],
+                    correct: 1,
+                    explanation: "Using power rule: d/dx(3x⁵) = 15x⁴, d/dx(-2x³) = -6x², d/dx(x) = 1"
+                },
+                {
+                    id: 5,
+                    text: "Calculate ∫(x² + 2x) dx from x = 0 to x = 3",
+                    options: ["12", "15", "18", "21"],
+                    correct: 2,
+                    explanation: "∫(x² + 2x) dx = x³/3 + x². From 0 to 3: (27/3 + 9) - (0) = 9 + 9 = 18"
+                },
+                {
+                    id: 6,
+                    text: "In triangle ABC, if the midline connecting midpoints of AB and AC has length 7, what is the length of BC?",
+                    options: ["3.5", "7", "14", "21"],
+                    correct: 2,
+                    explanation: "By the midline theorem, the midline is parallel to the third side and half its length. So BC = 2 × 7 = 14"
+                },
+                {
+                    id: 7,
+                    text: "A right triangle has legs 5 and 12. What is the length of the hypotenuse?",
+                    options: ["11", "13", "15", "17"],
+                    correct: 1,
+                    explanation: "Using Pythagorean theorem: c² = a² + b² = 5² + 12² = 25 + 144 = 169, so c = 13"
+                },
+                {
+                    id: 8,
+                    text: "Find the equation of a circle with center (-3, 4) and radius 6",
+                    options: ["(x - 3)² + (y + 4)² = 6", "(x + 3)² + (y - 4)² = 6", "x² + y² = 36", "(x + 3)² + (y - 4)² = 36"],
+                    correct: 3,
+                    explanation: "Circle equation: (x - h)² + (y - k)² = r², where (h,k) = (-3,4) and r = 6"
+                },
+                {
+                    id: 9,
+                    text: "If f(x) = x - 3 and g(x) = x² + 1, find (g ∘ f)(x)",
+                    options: ["x² - 2", "(x - 3)² + 1", "x³ - 3x² + x - 3", "x² + x - 2"],
+                    correct: 1,
+                    explanation: "Composition: (g ∘ f)(x) = g(f(x)) = g(x-3) = (x-3)² + 1"
+                },
+                {
+                    id: 10,
+                    text: "What is the domain of f(x) = √(x - 2) / (x + 1)?",
+                    options: ["x > 2", "x ≥ 2", "x ≥ 2, x ≠ -1", "All real numbers except x = -1"],
+                    correct: 2,
+                    explanation: "Need x - 2 ≥ 0 (for square root) and x + 1 ≠ 0 (for denominator), so x ≥ 2 and x ≠ -1"
+                },
+                {
+                    id: 11,
+                    text: "For piecewise function to be continuous at x = 2, if f(x) = x + 1 for x < 2 and f(x) = ax - 1 for x ≥ 2, find a",
+                    options: ["a = 1", "a = 2", "a = 3", "a = 4"],
+                    correct: 1,
+                    explanation: "For continuity: lim(x→2⁻) f(x) = f(2). So 2 + 1 = a(2) - 1, thus 3 = 2a - 1, so a = 2"
+                },
+                {
+                    id: 12,
+                    text: "If P(A) = 0.3 and P(B) = 0.4, and A and B are independent, find P(A ∩ B)",
+                    options: ["0.1", "0.12", "0.35", "0.7"],
+                    correct: 1,
+                    explanation: "For independent events: P(A ∩ B) = P(A) × P(B) = 0.3 × 0.4 = 0.12"
+                },
+                {
+                    id: 13,
+                    text: "Find the slope of the line passing through points (-2, 5) and (4, -1)",
+                    options: ["-2", "-1", "-1/2", "1"],
+                    correct: 1,
+                    explanation: "Slope = (y₂ - y₁)/(x₂ - x₁) = (-1 - 5)/(4 - (-2)) = -6/6 = -1"
+                },
+                {
+                    id: 14,
+                    text: "A cube is rotated 90° counterclockwise around the vertical axis. If a face was originally pointing East, where does it point now?",
+                    options: ["East", "North", "South", "West"],
+                    correct: 1,
+                    explanation: "A 90° counterclockwise rotation moves East → North"
+                },
+                {
+                    id: 15,
+                    text: "Solve the system: 2x + 3y = 13, x - y = 1",
+                    options: ["x = 2, y = 3", "x = 3, y = 2", "x = 4, y = -3", "x = 4, y = 3"],
+                    correct: 3,
+                    explanation: "From second equation: x = y + 1. Substitute: 2(y + 1) + 3y = 13, so 5y + 2 = 13, y = 3, x = 4"
+                },
+                {
+                    id: 16,
+                    text: "Find the vertex of the parabola y = x² - 4x + 7",
+                    options: ["(4, 7)", "(2, 3)", "(-2, 19)", "(0, 7)"],
+                    correct: 1,
+                    explanation: "Vertex x-coordinate: x = -b/(2a) = 4/2 = 2. y = 4 - 8 + 7 = 3. Vertex: (2, 3)"
+                },
+                {
+                    id: 17,
+                    text: "Calculate log₂(64)",
+                    options: ["4", "6", "8", "32"],
+                    correct: 1,
+                    explanation: "log₂(64) asks: 2 to what power equals 64? Since 2⁶ = 64, the answer is 6"
+                },
+                {
+                    id: 18,
+                    text: "Find the sum of the arithmetic sequence: 3, 7, 11, 15, ..., 39",
+                    options: ["180", "189", "200", "210"],
+                    correct: 3,
+                    explanation: "First term a = 3, common difference d = 4, last term l = 39. Number of terms: n = (39-3)/4 + 1 = 10. Sum = n(a+l)/2 = 10(3+39)/2 = 210"
+                },
+                {
+                    id: 19,
+                    text: "If sin θ = 3/5 and θ is in the first quadrant, find cos θ",
+                    options: ["3/4", "4/5", "5/4", "5/3"],
+                    correct: 1,
+                    explanation: "Using Pythagorean identity: sin²θ + cos²θ = 1. So cos²θ = 1 - (3/5)² = 1 - 9/25 = 16/25. Therefore cos θ = 4/5 (positive in first quadrant)"
+                },
+                {
+                    id: 20,
+                    text: "Find the limit: lim(x→2) (x² - 4)/(x - 2)",
+                    options: ["0", "2", "4", "undefined"],
+                    correct: 2,
+                    explanation: "Factor numerator: (x² - 4) = (x - 2)(x + 2). So the limit becomes lim(x→2) (x + 2) = 2 + 2 = 4"
+                }
+            ],
+            science: [
+                {
+                    id: 21,
+                    text: "A wave has frequency 25 Hz and wavelength 4 meters. Calculate its speed.",
+                    options: ["6.25 m/s", "21 m/s", "29 m/s", "100 m/s"],
+                    correct: 3,
+                    explanation: "Wave speed = frequency × wavelength = 25 Hz × 4 m = 100 m/s"
+                },
+                {
+                    id: 22,
+                    text: "Using Ohm's Law, if a resistor has 6V across it and carries 2A of current, what is its resistance?",
+                    options: ["4 Ω", "3 Ω", "8 Ω", "12 Ω"],
+                    correct: 1,
+                    explanation: "Ohm's Law: V = IR, so R = V/I = 6V/2A = 3Ω"
+                },
+                {
+                    id: 23,
+                    text: "In a parallel circuit with three resistors (2Ω, 3Ω, 6Ω), what is the total resistance?",
+                    options: ["0.5 Ω", "1 Ω", "2 Ω", "11 Ω"],
+                    correct: 1,
+                    explanation: "For parallel: 1/R = 1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 6/6 = 1, so R = 1Ω"
+                },
+                {
+                    id: 24,
+                    text: "What is the correct taxonomic order from most general to most specific?",
+                    options: ["Species, Genus, Family, Order, Class, Phylum, Kingdom", "Kingdom, Class, Phylum, Order, Family, Genus, Species", "Domain, Kingdom, Class, Order, Family, Genus, Species", "Kingdom, Phylum, Class, Order, Family, Genus, Species"],
+                    correct: 3,
+                    explanation: "The taxonomic hierarchy goes: Kingdom, Phylum, Class, Order, Family, Genus, Species (King Philip Came Over For Good Soup)"
+                },
+                {
+                    id: 25,
+                    text: "Which bacterial shape is described as spiral or corkscrew-like?",
+                    options: ["Coccus", "Bacillus", "Spirillum", "Vibrio"],
+                    correct: 2,
+                    explanation: "Spirillum bacteria have a spiral or corkscrew shape, while coccus are spherical and bacillus are rod-shaped"
+                },
+                {
+                    id: 26,
+                    text: "What organelle is responsible for cellular respiration and ATP production?",
+                    options: ["Ribosomes", "Mitochondria", "Endoplasmic reticulum", "Golgi apparatus"],
+                    correct: 1,
+                    explanation: "Mitochondria are the 'powerhouses' of the cell, responsible for cellular respiration and ATP production"
+                },
+                {
+                    id: 27,
+                    text: "If you dilute 50 mL of 4M solution to a final volume of 200 mL, what is the new concentration?",
+                    options: ["0.5 M", "1 M", "2 M", "8 M"],
+                    correct: 1,
+                    explanation: "Using C₁V₁ = C₂V₂: (4M)(50mL) = C₂(200mL), so C₂ = 200/200 = 1M"
+                },
+                {
+                    id: 28,
+                    text: "What is the chemical formula for aluminum sulfate?",
+                    options: ["AlSO₄", "Al₃(SO₄)₂", "Al(SO₄)₂", "Al₂(SO₄)₃"],
+                    correct: 3,
+                    explanation: "Aluminum has +3 charge, sulfate has -2 charge. To balance: Al₂(SO₄)₃"
+                },
+                {
+                    id: 29,
+                    text: "Complete the double displacement reaction: BaCl₂ + Na₂SO₄ → ? + ?",
+                    options: ["Ba₂SO₄ + NaCl₂", "BaSO₄ + 2NaCl", "BaNa₂ + ClSO₄", "BaS + Na₂ClO₄"],
+                    correct: 1,
+                    explanation: "In double displacement, cations and anions switch: BaCl₂ + Na₂SO₄ → BaSO₄ + 2NaCl"
+                },
+                {
+                    id: 30,
+                    text: "Using ideal gas law, if pressure is tripled while volume is halved at constant temperature, what happens to the number of moles?",
+                    options: ["Stays the same", "Increases by factor of 1.5", "Doubles", "Triples"],
+                    correct: 1,
+                    explanation: "PV = nRT. If P becomes 3P and V becomes V/2: (3P)(V/2) = nRT, so 1.5PV = nRT. Since PV ∝ n, n increases by factor of 1.5"
+                },
+                {
+                    id: 31,
+                    text: "How many moles are in 90 grams of water (H₂O)? (Molar mass H₂O = 18 g/mol)",
+                    options: ["1.62 moles", "5 moles", "72 moles", "108 moles"],
+                    correct: 1,
+                    explanation: "Moles = mass/molar mass = 90g/18g/mol = 5 moles"
+                },
+                {
+                    id: 32,
+                    text: "What is the molar mass of Ca(NO₃)₂? (Ca = 40, N = 14, O = 16)",
+                    options: ["102 g/mol", "132 g/mol", "148 g/mol", "164 g/mol"],
+                    correct: 3,
+                    explanation: "Ca(NO₃)₂: 40 + 2(14 + 3×16) = 40 + 2(14 + 48) = 40 + 2(62) = 40 + 124 = 164 g/mol"
+                },
+                {
+                    id: 33,
+                    text: "A 5 kg object slides on a surface with coefficient of kinetic friction 0.4. What is the friction force? (g = 10 m/s²)",
+                    options: ["2 N", "20 N", "50 N", "200 N"],
+                    correct: 1,
+                    explanation: "Friction force = μk × normal force. Normal force = mg = 5 kg × 10 m/s² = 50 N. So friction force = 0.4 × 50 N = 20 N"
+                },
+                {
+                    id: 34,
+                    text: "Which free-body diagram correctly shows the forces acting on a book at rest on a table?",
+                    options: ["Weight downward only", "Weight downward, normal force upward", "Weight downward, normal force upward, friction force sideways", "Normal force upward only"],
+                    correct: 1,
+                    explanation: "For a book at rest, only gravity (weight) downward and normal force upward act, with equal magnitudes"
+                },
+                {
+                    id: 35,
+                    text: "A pendulum swings back and forth. At which point is its kinetic energy greatest?",
+                    options: ["At the highest points", "At the bottom of its swing", "At the midpoint between high and low points", "Kinetic energy remains constant"],
+                    correct: 1,
+                    explanation: "Kinetic energy is greatest at the bottom of the swing where speed is maximum, while potential energy is greatest at the highest points"
+                },
+                {
+                    id: 36,
+                    text: "Arrange these electromagnetic waves in order of increasing energy: visible light, gamma rays, radio waves, ultraviolet",
+                    options: ["Gamma rays, ultraviolet, visible light, radio waves", "Radio waves, ultraviolet, visible light, gamma rays", "Visible light, radio waves, ultraviolet, gamma rays", "Radio waves, visible light, ultraviolet, gamma rays"],
+                    correct: 3,
+                    explanation: "Electromagnetic spectrum energy order: radio < microwave < infrared < visible < ultraviolet < x-rays < gamma rays"
+                },
+                {
+                    id: 37,
+                    text: "In an experiment testing how fertilizer affects plant growth, what is the independent variable?",
+                    options: ["Plant growth", "Amount of fertilizer", "Type of plant", "Amount of water"],
+                    correct: 1,
+                    explanation: "The independent variable is what the experimenter changes (fertilizer amount), while plant growth is the dependent variable"
+                },
+                {
+                    id: 38,
+                    text: "Given data showing taller people tend to have higher weights, what can you conclude?",
+                    options: ["Height causes weight increase", "Weight causes height increase", "There is a correlation between height and weight", "No relationship exists"],
+                    correct: 2,
+                    explanation: "Correlation shows a relationship but doesn't prove causation - other factors may be involved"
+                },
+                {
+                    id: 39,
+                    text: "A cube is rotated 180° around the vertical axis. If a face was originally pointing North, where does it point now?",
+                    options: ["North", "East", "South", "West"],
+                    correct: 2,
+                    explanation: "A 180° rotation reverses the direction, so North → South"
+                },
+                {
+                    id: 40,
+                    text: "What is the probability of an impossible event?",
+                    options: ["0.5", "1", "0", "Undefined"],
+                    correct: 2,
+                    explanation: "Probability ranges from 0 (impossible) to 1 (certain)"
+                }
+            ],
+            reading: [
+                {
+                    id: 41,
+                    text: "Read the passage: 'The Philippine eagle, also known as the monkey-eating eagle, is critically endangered with fewer than 400 pairs remaining in the wild. Deforestation and hunting have drastically reduced its habitat.' What is the main idea?",
+                    options: ["The Philippine eagle prefers to eat monkeys", "There are exactly 400 Philippine eagles left","The Philippine eagle is endangered due to habitat loss and hunting", "Deforestation only affects Philippine eagles"],
+                    correct: 2,
+                    explanation: "The main idea summarizes the key points about the eagle's endangered status and causes"
+                },
+                {
+                    id: 42,
+                    text: "'The scientist was meticulous in her research, checking every detail multiple times.' Based on context, what does 'meticulous' mean?",
+                    options: ["Quick and efficient", "Careless and sloppy", "Creative and imaginative", "Extremely careful and precise"],
+                    correct: 3,
+                    explanation: "The context about checking details multiple times suggests 'meticulous' means very careful"
+                },
+                {
+                    id: 43,
+                    text: "If a passage states 'All mammals are warm-blooded, and whales are mammals,' what can you infer about whales?",
+                    options: ["Whales are the largest mammals", "Whales are warm-blooded", "Whales live in the ocean", "All warm-blooded animals are whales"],
+                    correct: 1,
+                    explanation: "Following the logical chain: whales are mammals → all mammals are warm-blooded → therefore whales are warm-blooded"
+                },
+                {
+                    id: 44,
+                    text: "Which sentence best supports the claim that recycling reduces landfill waste?",
+                    options: ["Recycling bins are blue in many cities", "Recycling diverts materials from landfills, extending their usable lifespan", "Some people find recycling inconvenient", "Landfills can produce methane gas"],
+                    correct: 1,
+                    explanation: "This option directly connects recycling to reduced landfill use"
+                },
+                {
+                    id: 45,
+                    text: "What is the author's likely purpose in writing: 'Our city's parks are overcrowded, poorly maintained, and lack basic facilities. We must invest in green spaces for community health.'?",
+                    options: ["To describe all city parks", "To tell a story about a park", "To persuade officials to improve parks", "To explain how to build a park"],
+                    correct: 1,
+                    explanation: "The critical tone and call to action suggest a persuasive purpose"
+                },
+                {
+                    id: 46,
+                    text: "Read: 'The experiment's results were anomalous - they directly contradicted all previous findings.' What does 'anomalous' mean?",
+                    options: ["Perfectly matching predictions", "Unimportant", "Highly accurate", "Deviating from what's expected"],
+                    correct: 3,
+                    explanation: "The context about contradicting previous findings suggests 'anomalous' means unexpected deviation"
+                },
+                {
+                    id: 47,
+                    text: "Which title best fits an article about newly discovered health benefits of dark chocolate?",
+                    options: ["The History of Chocolate", "Dark Chocolate: Sweet News for Your Heart", "How Candy Is Made", "Why Kids Love Sweets"],
+                    correct: 1,
+                    explanation: "This title captures both the subject (dark chocolate) and the focus (health benefits)"
+                },
+                {
+                    id: 48,
+                    text: "What is the tone of: 'Despite the team's valiant effort, the last-minute goal crushed their championship hopes.'?",
+                    options: ["Joyful", "Angry", "Indifferent", "Sympathetic"],
+                    correct: 3,
+                    explanation: "Words like 'valiant' and 'crushed' suggest a sympathetic tone toward the losing team"
+                },
+                {
+                    id: 49,
+                    text: "Which evidence would best support that climate change is accelerating?",
+                    options: ["A cold winter in one region", "Data showing rising global temperatures and shrinking ice caps over decades", "An opinion about weather patterns", "A single hot summer"],
+                    correct: 1,
+                    explanation: "Long-term, measurable data across multiple indicators provides strongest evidence"
+                },
+                {
+                    id: 50,
+                    text: "'The ancient library was a repository of knowledge, containing scrolls from across the known world.' What is the best definition of 'repository' in this context?",
+                    options: ["A type of book", "A place where things are stored", "A reading room", "A government building"],
+                    correct: 1,
+                    explanation: "The context about containing scrolls suggests 'repository' means a storage place"
+                },
+                {
+                    id: 51,
+                    text: "Which statement is an opinion rather than a fact?",
+                    options: ["Vanilla ice cream is white", "Vanilla comes from orchid beans", "Vanilla was first cultivated in Mexico", "Vanilla is the most delicious ice cream flavor"],
+                    correct: 3,
+                    explanation: "Taste preferences are subjective opinions, while the others are verifiable facts"
+                },
+                {
+                    id: 52,
+                    text: "What is the relationship between these sentences: (1) 'The inventor tested hundreds of materials.' (2) 'After years of experimentation, she developed a revolutionary battery.'?",
+                    options: ["Sentence 2 contradicts sentence 1", "The sentences are unrelated", "Sentence 2 happens before sentence 1","Sentence 1 explains the process that led to sentence 2"],
+                    correct: 3,
+                    explanation: "The testing in sentence 1 led to the development in sentence 2, showing a cause-effect relationship"
+                },
+                {
+                    id: 53,
+                    text: "Which graphic would best illustrate a text about the water cycle?",
+                    options: ["A photo of a waterfall", "A diagram showing evaporation, condensation, and precipitation", "A chart of ocean temperatures", "A map of rivers"],
+                    correct: 1,
+                    explanation: "A process diagram would best illustrate the cyclical nature of the water cycle"
+                },
+                {
+                    id: 54,
+                    text: "What is the primary purpose of a research paper's abstract?",
+                    options: ["To summarize the paper's key points concisely", "To list all references used", "To provide detailed methodology", "To acknowledge contributors"],
+                    correct: 0,
+                    explanation: "An abstract gives readers a brief overview of the paper's purpose, methods, and conclusions"
+                },
+                {
+                    id: 55,
+                    text: "Which revision improves clarity: 'The car that was red went fast.'?",
+                    options: ["The fast car was red.", "The red car went fast.", "The car, red, went fast.", "The car that was the color red went fast."],
+                    correct: 1,
+                    explanation: "This version is most concise while maintaining all original information"
+                },
+                {
+                    id: 56,
+                    text: "Read: 'The committee reached a consensus after lengthy debate.' What does 'consensus' mean?",
+                    options: ["General agreement", "Majority opinion", "Final vote", "Temporary compromise"],
+                    correct: 0,
+                    explanation: "Consensus implies general agreement among group members"
+                },
+                {
+                    id: 57,
+                    text: "Which source would be most credible for a paper on climate change?",
+                    options: ["Peer-reviewed scientific journal","Personal blog", "Social media post", "Advertisement"],
+                    correct: 0,
+                    explanation: "Peer-reviewed journals undergo rigorous expert review, making them most credible"
+                },
+                {
+                    id: 58,
+                    text: "What literary device is used in: 'The wind whispered through the trees'?",
+                    options: ["Simile", "Hyperbole", "Personification", "Alliteration"],
+                    correct: 2,
+                    explanation: "Giving human characteristics (whispering) to non-human things (wind) is personification"
+                },
+                {
+                    id: 59,
+                    text: "Which transition best connects these ideas: 'The theory was controversial. ____, subsequent experiments confirmed its predictions.'?",
+                    options: ["Similarly", "Consequently", "Meanwhile", "However"],
+                    correct: 3,
+                    explanation: "However shows contrast between initial controversy and later confirmation"
+                },
+                {
+                    id: 60,
+                    text: "What is the best conclusion for an essay that discusses both benefits and drawbacks of remote work?",
+                    options: ["Remote work is clearly better than office work", "While remote work offers flexibility, it also presents challenges in collaboration that need addressing", "Nobody should ever work remotely", "All companies must adopt remote work immediately"],
+                    correct: 1,
+                    explanation: "This balanced conclusion acknowledges both sides discussed in the essay"
+                }
+            ]
+        };
+
+
+        // Initialize the test
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTest();
+            updateProgress();
+        });
+
+        // Generate the test questions
+        function generateTest() {
+            const testContent = document.getElementById('test-content');
+            
+            // Create Math section
+            let mathSection = createSection('math', 'Mathematics');
+            questions.math.forEach(q => {
+                mathSection.appendChild(createQuestion(q, 'math'));
+            });
+            testContent.appendChild(mathSection);
+            
+            // Create Science section
+            let scienceSection = createSection('science', 'Science');
+            questions.science.forEach(q => {
+                scienceSection.appendChild(createQuestion(q, 'science'));
+            });
+            testContent.appendChild(scienceSection);
+            
+            // Create Reading section
+            let readingSection = createSection('reading', 'Reading Comprehension');
+            questions.reading.forEach(q => {
+                readingSection.appendChild(createQuestion(q, 'reading'));
+            });
+            testContent.appendChild(readingSection);
+            
+            // Add event listeners to options
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionDiv = this.closest('.question');
+                    const questionId = parseInt(questionDiv.dataset.id);
+                    const subject = questionDiv.dataset.subject;
+                    const optionIndex = parseInt(this.dataset.option);
+                    
+                    // Store the selected answer
+                    questions[subject].find(q => q.id === questionId).selected = optionIndex;
+                    
+                    // Update UI
+                    updateQuestionUI(questionDiv, optionIndex);
+                    updateProgress();
+                });
+            });
+        }
+
+        // Create a section header
+        function createSection(id, title) {
+            const section = document.createElement('div');
+            section.className = 'section';
+            
+            const sectionHeader = document.createElement('div');
+            sectionHeader.className = 'section-header';
+            sectionHeader.id = id;
+            
+            const h2 = document.createElement('h2');
+            h2.textContent = title;
+            
+            sectionHeader.appendChild(h2);
+            section.appendChild(sectionHeader);
+            
+            return section;
+        }
+
+        // Create a question element
+        function createQuestion(question, subject) {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.dataset.id = question.id;
+            questionDiv.dataset.subject = subject;
+            
+            const questionHeader = document.createElement('div');
+            questionHeader.className = 'question-header';
+            
+            const questionNumber = document.createElement('div');
+            questionNumber.className = 'question-number';
+            questionNumber.textContent = question.id;
+            
+            const subjectTag = document.createElement('div');
+            subjectTag.className = `subject-tag ${subject}`;
+            subjectTag.textContent = subject.charAt(0).toUpperCase() + subject.slice(1);
+            
+            questionHeader.appendChild(questionNumber);
+            questionHeader.appendChild(subjectTag);
+            
+            const questionText = document.createElement('div');
+            questionText.className = 'question-text';
+            questionText.textContent = question.text;
+            
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'options';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('label');
+                optionDiv.className = 'option';
+                optionDiv.dataset.option = index;
+                
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `question-${question.id}`;
+                
+                const optionText = document.createElement('span');
+                optionText.textContent = option;
+                
+                optionDiv.appendChild(radio);
+                optionDiv.appendChild(optionText);
+                optionsDiv.appendChild(optionDiv);
+            });
+            
+            const explanationDiv = document.createElement('div');
+            explanationDiv.className = 'explanation';
+            explanationDiv.textContent = question.explanation;
+            explanationDiv.id = `explanation-${question.id}`;
+            
+            questionDiv.appendChild(questionHeader);
+            questionDiv.appendChild(questionText);
+            questionDiv.appendChild(optionsDiv);
+            questionDiv.appendChild(explanationDiv);
+            
+            return questionDiv;
+        }
+
+        // Update question UI when an option is selected
+        function updateQuestionUI(questionDiv, selectedOption) {
+            // Remove selected class from all options
+            questionDiv.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to the chosen option
+            if (selectedOption !== undefined) {
+                const selectedOptionDiv = questionDiv.querySelector(`.option[data-option="${selectedOption}"]`);
+                selectedOptionDiv.classList.add('selected');
+                selectedOptionDiv.querySelector('input').checked = true;
+            }
+        }
+
+        // Update progress bar and answered count
+        function updateProgress() {
+            let answered = 0;
+            let total = 0;
+            
+            // Count answered questions
+            for (const subject in questions) {
+                total += questions[subject].length;
+                answered += questions[subject].filter(q => q.selected !== undefined).length;
+            }
+            
+            // Update progress bar
+            const progressFill = document.getElementById('progress');
+            progressFill.style.width = `${(answered / total) * 100}%`;
+            
+            // Update answered count
+            document.getElementById('answered-count').textContent = answered;
+        }
+
+        // Submit the test
+        function submitTest() {
+            let correct = 0;
+            let total = 0;
+            let subjectScores = {};
+            
+            // Calculate scores
+            for (const subject in questions) {
+                subjectScores[subject] = { correct: 0, total: questions[subject].length };
+                
+                questions[subject].forEach(q => {
+                    total++;
+                    if (q.selected === q.correct) {
+                        correct++;
+                        subjectScores[subject].correct++;
+                    }
+                    
+                    // Highlight correct/incorrect answers
+                    const questionDiv = document.querySelector(`.question[data-id="${q.id}"][data-subject="${subject}"]`);
+                    if (q.selected !== undefined) {
+                        if (q.selected === q.correct) {
+                            questionDiv.classList.add('correct');
+                        } else {
+                            questionDiv.classList.add('incorrect');
+                        }
+                        
+                        // Show explanation
+                        document.getElementById(`explanation-${q.id}`).style.display = 'block';
+                    }
+                });
+            }
+            
+            // Display results
+            const scoreDiv = document.getElementById('score');
+            const percentage = Math.round((correct / total) * 100);
+            scoreDiv.textContent = `Your Score: ${correct}/${total} (${percentage}%)`;
+            
+            const breakdownDiv = document.getElementById('breakdown');
+            breakdownDiv.innerHTML = '';
+            
+            for (const subject in subjectScores) {
+                const subjectScore = document.createElement('div');
+                subjectScore.className = 'subject-score';
+                
+                const subjectName = document.createElement('h3');
+                subjectName.textContent = subject.charAt(0).toUpperCase() + subject.slice(1);
+                
+                const score = document.createElement('p');
+                const subjectPercentage = Math.round((subjectScores[subject].correct / subjectScores[subject].total) * 100);
+                score.textContent = `${subjectScores[subject].correct}/${subjectScores[subject].total} (${subjectPercentage}%)`;
+                
+                subjectScore.appendChild(subjectName);
+                subjectScore.appendChild(score);
+                breakdownDiv.appendChild(subjectScore);
+            }
+            
+            // Show results section
+            document.getElementById('results').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Reset the test
+        function resetTest() {
+            // Clear selections
+            for (const subject in questions) {
+                questions[subject].forEach(q => {
+                    delete q.selected;
+                });
+            }
+            
+            // Reset UI
+            document.querySelectorAll('.question').forEach(questionDiv => {
+                questionDiv.classList.remove('correct', 'incorrect');
+                questionDiv.querySelectorAll('.option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('input').checked = false;
+                });
+                questionDiv.querySelector('.explanation').style.display = 'none';
+            });
+            
+            // Hide results
+            document.getElementById('results').style.display = 'none';
+            
+            // Reset progress
+            updateProgress();
+        }
+
+        // Scroll to a section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
