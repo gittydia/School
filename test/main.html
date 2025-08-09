@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOST Scholarship Practice Test - 60 Questions</title>
+    <title>DOST Scholarship Practice Test - 100 Questions</title>
     <style>
         * {
             margin: 0;
@@ -12,19 +12,20 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             min-height: 100vh;
             padding: 20px;
+            color: #333;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             overflow: hidden;
         }
         
@@ -33,6 +34,7 @@
             color: white;
             padding: 30px;
             text-align: center;
+            position: relative;
         }
         
         .header h1 {
@@ -55,6 +57,7 @@
         .test-info h3 {
             color: #2c3e50;
             margin-bottom: 10px;
+            text-align: center;
         }
         
         .info-grid {
@@ -70,6 +73,7 @@
             border-radius: 8px;
             border-left: 4px solid #3498db;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
         }
         
         .progress-bar {
@@ -104,12 +108,15 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .subject-btn.math { background: #e74c3c; color: white; }
         .subject-btn.science { background: #27ae60; color: white; }
         .subject-btn.reading { background: #9b59b6; color: white; }
-        .subject-btn:hover { transform: translateY(-2px); }
+        .subject-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         
         .test-content {
             padding: 30px;
@@ -140,6 +147,7 @@
             padding: 20px;
             border-left: 5px solid #3498db;
             transition: all 0.3s ease;
+            position: relative;
         }
         
         .question:hover {
@@ -151,6 +159,8 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .question-number {
@@ -159,7 +169,6 @@
             padding: 8px 15px;
             border-radius: 20px;
             font-weight: bold;
-            margin-right: 15px;
             min-width: 60px;
             text-align: center;
         }
@@ -192,6 +201,7 @@
             margin: 10px 0;
             font-style: italic;
             color: #555;
+            line-height: 1.6;
         }
         
         .options {
@@ -297,6 +307,7 @@
             border-radius: 8px;
             text-align: center;
             border-left: 4px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .explanation {
@@ -306,6 +317,7 @@
             border-radius: 8px;
             margin-top: 10px;
             display: none;
+            line-height: 1.6;
         }
         
         .correct { border-left-color: #27ae60 !important; }
@@ -317,6 +329,28 @@
             border-radius: 8px;
             margin-bottom: 20px;
             text-align: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .timer {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .topic-tag {
+            background: #3498db;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-left: 5px;
+            display: inline-block;
         }
         
         @media (max-width: 768px) {
@@ -340,6 +374,16 @@
                 flex-direction: column;
                 align-items: center;
             }
+            
+            .question-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .submit-btn, .reset-btn {
+                width: 100%;
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
@@ -347,20 +391,21 @@
     <div class="container">
         <div class="header">
             <h1>🎓 DOST Scholarship Practice Test</h1>
-            <p>Complete 60-Question Practice Exam</p>
+            <p>Complete 100-Question Practice Exam</p>
+            <div class="timer" id="timer">Time: 03:00:00</div>
         </div>
         
         <div class="test-info">
             <h3>Test Information</h3>
             <div class="info-grid">
                 <div class="info-item">
-                    <strong>Total Questions:</strong> 60
+                    <strong>Total Questions:</strong> 100
                 </div>
                 <div class="info-item">
-                    <strong>Mathematics:</strong> 20 questions
+                    <strong>Mathematics:</strong> 40 questions
                 </div>
                 <div class="info-item">
-                    <strong>Science:</strong> 20 questions
+                    <strong>Science:</strong> 40 questions
                 </div>
                 <div class="info-item">
                     <strong>Reading:</strong> 20 questions
@@ -389,7 +434,7 @@
         
         <div class="submit-section">
             <div class="stats" id="stats">
-                Answered: <span id="answered-count">0</span>/60 questions
+                Answered: <span id="answered-count">0</span>/100 questions
             </div>
             <button class="submit-btn" onclick="submitTest()">📊 Submit Test</button>
             <button class="reset-btn" onclick="resetTest()">🔄 Reset Test</button>
@@ -406,436 +451,291 @@
             math: [
                 {
                     id: 1,
-                    text: "Simplify: 4x³ - 2x² + 7x - 3x³ + 5x² - 2x",
-                    options: ["x³ + 3x² + 5x", "7x³ + 3x² + 5x", "x³ + 3x² + 9x", "4x³ + 7x² + 5x"],
-                    correct: 0,
-                    explanation: "Combine like terms: (4x³ - 3x³) + (-2x² + 5x²) + (7x - 2x) = x³ + 3x² + 5x"
+                    text: "Solve for x: 3x + 7 = 22",
+                    options: ["x = 3", "x = 5", "x = 7", "x = 15"],
+                    correct: 1,
+                    explanation: "Subtract 7 from both sides: 3x = 15. Then divide by 3: x = 5",
+                    topic: "Algebra Basics"
                 },
                 {
                     id: 2,
-                    text: "Solve: 3^(x+1) = 81",
-                    options: ["x = 2", "x = 3", "x = 4", "x = 5"],
-                    correct: 1,
-                    explanation: "Since 81 = 3⁴, we have 3^(x+1) = 3⁴, so x+1 = 4, therefore x = 3"
+                    text: "Calculate 456 ÷ 12 using long division",
+                    options: ["38", "42", "48", "52"],
+                    correct: 0,
+                    explanation: "12 × 38 = 456, so 456 ÷ 12 = 38",
+                    topic: "Long Division"
                 },
                 {
                     id: 3,
-                    text: "Solve the rational equation: (2x - 1)/(x + 3) = 5",
-                    options: ["x = 2", "x = 4", "x = 8", "x = 16"],
+                    text: "A quadrilateral has angles 75°, 105°, and 120°. What is the fourth angle?",
+                    options: ["40°", "50°", "60°", "70°"],
                     correct: 2,
-                    explanation: "Cross multiply: 2x - 1 = 5(x + 3) = 5x + 15, so -16 = 3x, thus x = 8"
+                    explanation: "Sum of interior angles in quadrilateral is 360°. 75 + 105 + 120 = 300. 360 - 300 = 60°",
+                    topic: "Quadrilateral"
                 },
                 {
                     id: 4,
-                    text: "Find the derivative of f(x) = 3x⁵ - 2x³ + x",
-                    options: ["3x⁴ - 2x² + 1", "15x⁴ - 6x² + 1", "15x⁴ - 6x² + x", "15x⁵ - 6x³ + 1"],
-                    correct: 1,
-                    explanation: "Using power rule: d/dx(3x⁵) = 15x⁴, d/dx(-2x³) = -6x², d/dx(x) = 1"
+                    text: "Convert 5π/6 radians to degrees",
+                    options: ["120°", "135°", "150°", "180°"],
+                    correct: 2,
+                    explanation: "To convert radians to degrees: degrees = radians × 180/π. So (5π/6) × (180/π) = 150°",
+                    topic: "Radians and Degrees"
                 },
                 {
                     id: 5,
-                    text: "Calculate ∫(x² + 2x) dx from x = 0 to x = 3",
-                    options: ["12", "15", "18", "21"],
+                    text: "A triangle has sides 7cm, 24cm, and 25cm. What type of triangle is this?",
+                    options: ["Acute", "Obtuse", "Right", "Equilateral"],
                     correct: 2,
-                    explanation: "∫(x² + 2x) dx = x³/3 + x². From 0 to 3: (27/3 + 9) - (0) = 9 + 9 = 18"
+                    explanation: "7² + 24² = 49 + 576 = 625 = 25². This satisfies the Pythagorean theorem, so it's a right triangle",
+                    topic: "Triangles"
                 },
                 {
                     id: 6,
-                    text: "In triangle ABC, if the midline connecting midpoints of AB and AC has length 7, what is the length of BC?",
-                    options: ["3.5", "7", "14", "21"],
-                    correct: 2,
-                    explanation: "By the midline theorem, the midline is parallel to the third side and half its length. So BC = 2 × 7 = 14"
+                    text: "Solve the equation: 2x² - 8x + 6 = 0",
+                    options: ["x = 1, x = 3", "x = 2, x = 4", "x = 1, x = 2", "x = 3, x = 4"],
+                    correct: 0,
+                    explanation: "Factoring: 2(x² - 4x + 3) = 2(x-1)(x-3) = 0. Solutions x=1 and x=3",
+                    topic: "Algebra Basics"
                 },
                 {
                     id: 7,
-                    text: "A right triangle has legs 5 and 12. What is the length of the hypotenuse?",
-                    options: ["11", "13", "15", "17"],
-                    correct: 1,
-                    explanation: "Using Pythagorean theorem: c² = a² + b² = 5² + 12² = 25 + 144 = 169, so c = 13"
+                    text: "Find the area of a parallelogram with base 12cm and height 8cm",
+                    options: ["48 cm²", "72 cm²", "96 cm²", "120 cm²"],
+                    correct: 2,
+                    explanation: "Area = base × height = 12cm × 8cm = 96 cm²",
+                    topic: "Quadrilateral"
                 },
                 {
                     id: 8,
-                    text: "Find the equation of a circle with center (-3, 4) and radius 6",
-                    options: ["(x - 3)² + (y + 4)² = 6", "(x + 3)² + (y - 4)² = 6", "x² + y² = 36", "(x + 3)² + (y - 4)² = 36"],
-                    correct: 3,
-                    explanation: "Circle equation: (x - h)² + (y - k)² = r², where (h,k) = (-3,4) and r = 6"
+                    text: "Calculate: (3/4) ÷ (2/5)",
+                    options: ["3/10", "15/8", "8/15", "10/3"],
+                    correct: 1,
+                    explanation: "Dividing fractions: (3/4) ÷ (2/5) = (3/4) × (5/2) = 15/8",
+                    topic: "Algebra Basics"
                 },
                 {
                     id: 9,
-                    text: "If f(x) = x - 3 and g(x) = x² + 1, find (g ∘ f)(x)",
-                    options: ["x² - 2", "(x - 3)² + 1", "x³ - 3x² + x - 3", "x² + x - 2"],
-                    correct: 1,
-                    explanation: "Composition: (g ∘ f)(x) = g(f(x)) = g(x-3) = (x-3)² + 1"
+                    text: "A circle has a central angle of 2 radians. If the radius is 10cm, what is the arc length?",
+                    options: ["5 cm", "10 cm", "15 cm", "20 cm"],
+                    correct: 3,
+                    explanation: "Arc length = radius × angle (in radians) = 10 × 2 = 20 cm",
+                    topic: "Radians and Degrees"
                 },
                 {
                     id: 10,
-                    text: "What is the domain of f(x) = √(x - 2) / (x + 1)?",
-                    options: ["x > 2", "x ≥ 2", "x ≥ 2, x ≠ -1", "All real numbers except x = -1"],
-                    correct: 2,
-                    explanation: "Need x - 2 ≥ 0 (for square root) and x + 1 ≠ 0 (for denominator), so x ≥ 2 and x ≠ -1"
+                    text: "Find the missing side in the right triangle: legs 5cm and 12cm",
+                    options: ["10 cm", "13 cm", "15 cm", "17 cm"],
+                    correct: 1,
+                    explanation: "Using Pythagorean theorem: √(5² + 12²) = √(25 + 144) = √169 = 13 cm",
+                    topic: "Triangles"
                 },
                 {
                     id: 11,
-                    text: "For piecewise function to be continuous at x = 2, if f(x) = x + 1 for x < 2 and f(x) = ax - 1 for x ≥ 2, find a",
-                    options: ["a = 1", "a = 2", "a = 3", "a = 4"],
-                    correct: 1,
-                    explanation: "For continuity: lim(x→2⁻) f(x) = f(2). So 2 + 1 = a(2) - 1, thus 3 = 2a - 1, so a = 2"
+                    text: "Solve for x: 4(x - 3) = 2x + 10",
+                    options: ["x = 5", "x = 7", "x = 11", "x = 13"],
+                    correct: 2,
+                    explanation: "4x - 12 = 2x + 10 → 4x - 2x = 10 + 12 → 2x = 22 → x = 11",
+                    topic: "Algebra Basics"
                 },
                 {
                     id: 12,
-                    text: "If P(A) = 0.3 and P(B) = 0.4, and A and B are independent, find P(A ∩ B)",
-                    options: ["0.1", "0.12", "0.35", "0.7"],
-                    correct: 1,
-                    explanation: "For independent events: P(A ∩ B) = P(A) × P(B) = 0.3 × 0.4 = 0.12"
+                    text: "Calculate 789 ÷ 15 using long division",
+                    options: ["52.6", "53.5", "54.2", "55.3"],
+                    correct: 0,
+                    explanation: "15 × 52 = 780. 789 - 780 = 9. So 52 + 9/15 = 52 + 3/5 = 52.6",
+                    topic: "Long Division"
                 },
                 {
                     id: 13,
-                    text: "Find the slope of the line passing through points (-2, 5) and (4, -1)",
-                    options: ["-2", "-1", "-1/2", "1"],
-                    correct: 1,
-                    explanation: "Slope = (y₂ - y₁)/(x₂ - x₁) = (-1 - 5)/(4 - (-2)) = -6/6 = -1"
+                    text: "The diagonals of a rhombus are 16cm and 12cm. What is its area?",
+                    options: ["96 cm²", "108 cm²", "112 cm²", "128 cm²"],
+                    correct: 0,
+                    explanation: "Area of rhombus = (d₁ × d₂)/2 = (16 × 12)/2 = 192/2 = 96 cm²",
+                    topic: "Quadrilateral"
                 },
                 {
                     id: 14,
-                    text: "A cube is rotated 90° counterclockwise around the vertical axis. If a face was originally pointing East, where does it point now?",
-                    options: ["East", "North", "South", "West"],
-                    correct: 1,
-                    explanation: "A 90° counterclockwise rotation moves East → North"
+                    text: "Convert 225° to radians",
+                    options: ["3π/4", "4π/5", "5π/4", "5π/3"],
+                    correct: 2,
+                    explanation: "Radians = degrees × π/180 = 225 × π/180 = 5π/4",
+                    topic: "Radians and Degrees"
                 },
                 {
                     id: 15,
-                    text: "Solve the system: 2x + 3y = 13, x - y = 1",
-                    options: ["x = 2, y = 3", "x = 3, y = 2", "x = 4, y = -3", "x = 4, y = 3"],
-                    correct: 3,
-                    explanation: "From second equation: x = y + 1. Substitute: 2(y + 1) + 3y = 13, so 5y + 2 = 13, y = 3, x = 4"
-                },
-                {
-                    id: 16,
-                    text: "Find the vertex of the parabola y = x² - 4x + 7",
-                    options: ["(4, 7)", "(2, 3)", "(-2, 19)", "(0, 7)"],
-                    correct: 1,
-                    explanation: "Vertex x-coordinate: x = -b/(2a) = 4/2 = 2. y = 4 - 8 + 7 = 3. Vertex: (2, 3)"
-                },
-                {
-                    id: 17,
-                    text: "Calculate log₂(64)",
-                    options: ["4", "6", "8", "32"],
-                    correct: 1,
-                    explanation: "log₂(64) asks: 2 to what power equals 64? Since 2⁶ = 64, the answer is 6"
-                },
-                {
-                    id: 18,
-                    text: "Find the sum of the arithmetic sequence: 3, 7, 11, 15, ..., 39",
-                    options: ["180", "189", "200", "210"],
-                    correct: 3,
-                    explanation: "First term a = 3, common difference d = 4, last term l = 39. Number of terms: n = (39-3)/4 + 1 = 10. Sum = n(a+l)/2 = 10(3+39)/2 = 210"
-                },
-                {
-                    id: 19,
-                    text: "If sin θ = 3/5 and θ is in the first quadrant, find cos θ",
-                    options: ["3/4", "4/5", "5/4", "5/3"],
-                    correct: 1,
-                    explanation: "Using Pythagorean identity: sin²θ + cos²θ = 1. So cos²θ = 1 - (3/5)² = 1 - 9/25 = 16/25. Therefore cos θ = 4/5 (positive in first quadrant)"
-                },
-                {
-                    id: 20,
-                    text: "Find the limit: lim(x→2) (x² - 4)/(x - 2)",
-                    options: ["0", "2", "4", "undefined"],
-                    correct: 2,
-                    explanation: "Factor numerator: (x² - 4) = (x - 2)(x + 2). So the limit becomes lim(x→2) (x + 2) = 2 + 2 = 4"
+                    text: "A triangle has angles 40°, 60°, and 80°. What type of triangle is this?",
+                    options: ["Acute", "Obtuse", "Right", "Isosceles"],
+                    correct: 0,
+                    explanation: "All angles are less than 90°, so it's an acute triangle",
+                    topic: "Triangles"
                 }
             ],
             science: [
                 {
-                    id: 21,
-                    text: "A wave has frequency 25 Hz and wavelength 4 meters. Calculate its speed.",
-                    options: ["6.25 m/s", "21 m/s", "29 m/s", "100 m/s"],
-                    correct: 3,
-                    explanation: "Wave speed = frequency × wavelength = 25 Hz × 4 m = 100 m/s"
-                },
-                {
-                    id: 22,
-                    text: "Using Ohm's Law, if a resistor has 6V across it and carries 2A of current, what is its resistance?",
-                    options: ["4 Ω", "3 Ω", "8 Ω", "12 Ω"],
+                    id: 1,
+                    text: "What is Ohm's Law?",
+                    options: ["V = I/R", "V = I × R", "P = I × V", "R = V × I"],
                     correct: 1,
-                    explanation: "Ohm's Law: V = IR, so R = V/I = 6V/2A = 3Ω"
+                    explanation: "Ohm's Law states that voltage (V) equals current (I) multiplied by resistance (R): V = I × R",
+                    topic: "Ohm's Law"
                 },
                 {
-                    id: 23,
-                    text: "In a parallel circuit with three resistors (2Ω, 3Ω, 6Ω), what is the total resistance?",
-                    options: ["0.5 Ω", "1 Ω", "2 Ω", "11 Ω"],
-                    correct: 1,
-                    explanation: "For parallel: 1/R = 1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 6/6 = 1, so R = 1Ω"
-                },
-                {
-                    id: 24,
-                    text: "What is the correct taxonomic order from most general to most specific?",
-                    options: ["Species, Genus, Family, Order, Class, Phylum, Kingdom", "Kingdom, Class, Phylum, Order, Family, Genus, Species", "Domain, Kingdom, Class, Order, Family, Genus, Species", "Kingdom, Phylum, Class, Order, Family, Genus, Species"],
-                    correct: 3,
-                    explanation: "The taxonomic hierarchy goes: Kingdom, Phylum, Class, Order, Family, Genus, Species (King Philip Came Over For Good Soup)"
-                },
-                {
-                    id: 25,
-                    text: "Which bacterial shape is described as spiral or corkscrew-like?",
-                    options: ["Coccus", "Bacillus", "Spirillum", "Vibrio"],
+                    id: 2,
+                    text: "Which of the following is an example of a double displacement reaction?",
+                    options: ["2H₂ + O₂ → 2H₂O", "Zn + 2HCl → ZnCl₂ + H₂", "NaCl + AgNO₃ → AgCl + NaNO₃", "CaCO₃ → CaO + CO₂"],
                     correct: 2,
-                    explanation: "Spirillum bacteria have a spiral or corkscrew shape, while coccus are spherical and bacillus are rod-shaped"
+                    explanation: "Double displacement reactions involve the exchange of ions between two compounds. NaCl + AgNO₃ → AgCl + NaNO₃ is an example",
+                    topic: "Double Displacement"
                 },
                 {
-                    id: 26,
-                    text: "What organelle is responsible for cellular respiration and ATP production?",
-                    options: ["Ribosomes", "Mitochondria", "Endoplasmic reticulum", "Golgi apparatus"],
+                    id: 3,
+                    text: "According to the Ideal Gas Law, PV = nRT, what does R represent?",
+                    options: ["Radius of gas molecule", "Gas constant", "Ratio of specific heats", "Molecular weight"],
                     correct: 1,
-                    explanation: "Mitochondria are the 'powerhouses' of the cell, responsible for cellular respiration and ATP production"
+                    explanation: "R is the universal gas constant, approximately 8.314 J/mol·K",
+                    topic: "Ideal Gas Law"
                 },
                 {
-                    id: 27,
-                    text: "If you dilute 50 mL of 4M solution to a final volume of 200 mL, what is the new concentration?",
-                    options: ["0.5 M", "1 M", "2 M", "8 M"],
-                    correct: 1,
-                    explanation: "Using C₁V₁ = C₂V₂: (4M)(50mL) = C₂(200mL), so C₂ = 200/200 = 1M"
-                },
-                {
-                    id: 28,
-                    text: "What is the chemical formula for aluminum sulfate?",
-                    options: ["AlSO₄", "Al₃(SO₄)₂", "Al(SO₄)₂", "Al₂(SO₄)₃"],
-                    correct: 3,
-                    explanation: "Aluminum has +3 charge, sulfate has -2 charge. To balance: Al₂(SO₄)₃"
-                },
-                {
-                    id: 29,
-                    text: "Complete the double displacement reaction: BaCl₂ + Na₂SO₄ → ? + ?",
-                    options: ["Ba₂SO₄ + NaCl₂", "BaSO₄ + 2NaCl", "BaNa₂ + ClSO₄", "BaS + Na₂ClO₄"],
-                    correct: 1,
-                    explanation: "In double displacement, cations and anions switch: BaCl₂ + Na₂SO₄ → BaSO₄ + 2NaCl"
-                },
-                {
-                    id: 30,
-                    text: "Using ideal gas law, if pressure is tripled while volume is halved at constant temperature, what happens to the number of moles?",
-                    options: ["Stays the same", "Increases by factor of 1.5", "Doubles", "Triples"],
-                    correct: 1,
-                    explanation: "PV = nRT. If P becomes 3P and V becomes V/2: (3P)(V/2) = nRT, so 1.5PV = nRT. Since PV ∝ n, n increases by factor of 1.5"
-                },
-                {
-                    id: 31,
-                    text: "How many moles are in 90 grams of water (H₂O)? (Molar mass H₂O = 18 g/mol)",
-                    options: ["1.62 moles", "5 moles", "72 moles", "108 moles"],
-                    correct: 1,
-                    explanation: "Moles = mass/molar mass = 90g/18g/mol = 5 moles"
-                },
-                {
-                    id: 32,
-                    text: "What is the molar mass of Ca(NO₃)₂? (Ca = 40, N = 14, O = 16)",
-                    options: ["102 g/mol", "132 g/mol", "148 g/mol", "164 g/mol"],
-                    correct: 3,
-                    explanation: "Ca(NO₃)₂: 40 + 2(14 + 3×16) = 40 + 2(14 + 48) = 40 + 2(62) = 40 + 124 = 164 g/mol"
-                },
-                {
-                    id: 33,
-                    text: "A 5 kg object slides on a surface with coefficient of kinetic friction 0.4. What is the friction force? (g = 10 m/s²)",
-                    options: ["2 N", "20 N", "50 N", "200 N"],
-                    correct: 1,
-                    explanation: "Friction force = μk × normal force. Normal force = mg = 5 kg × 10 m/s² = 50 N. So friction force = 0.4 × 50 N = 20 N"
-                },
-                {
-                    id: 34,
-                    text: "Which free-body diagram correctly shows the forces acting on a book at rest on a table?",
-                    options: ["Weight downward only", "Weight downward, normal force upward", "Weight downward, normal force upward, friction force sideways", "Normal force upward only"],
-                    correct: 1,
-                    explanation: "For a book at rest, only gravity (weight) downward and normal force upward act, with equal magnitudes"
-                },
-                {
-                    id: 35,
-                    text: "A pendulum swings back and forth. At which point is its kinetic energy greatest?",
-                    options: ["At the highest points", "At the bottom of its swing", "At the midpoint between high and low points", "Kinetic energy remains constant"],
-                    correct: 1,
-                    explanation: "Kinetic energy is greatest at the bottom of the swing where speed is maximum, while potential energy is greatest at the highest points"
-                },
-                {
-                    id: 36,
-                    text: "Arrange these electromagnetic waves in order of increasing energy: visible light, gamma rays, radio waves, ultraviolet",
-                    options: ["Gamma rays, ultraviolet, visible light, radio waves", "Radio waves, ultraviolet, visible light, gamma rays", "Visible light, radio waves, ultraviolet, gamma rays", "Radio waves, visible light, ultraviolet, gamma rays"],
-                    correct: 3,
-                    explanation: "Electromagnetic spectrum energy order: radio < microwave < infrared < visible < ultraviolet < x-rays < gamma rays"
-                },
-                {
-                    id: 37,
-                    text: "In an experiment testing how fertilizer affects plant growth, what is the independent variable?",
-                    options: ["Plant growth", "Amount of fertilizer", "Type of plant", "Amount of water"],
-                    correct: 1,
-                    explanation: "The independent variable is what the experimenter changes (fertilizer amount), while plant growth is the dependent variable"
-                },
-                {
-                    id: 38,
-                    text: "Given data showing taller people tend to have higher weights, what can you conclude?",
-                    options: ["Height causes weight increase", "Weight causes height increase", "There is a correlation between height and weight", "No relationship exists"],
+                    id: 4,
+                    text: "Which quadrilateral has exactly one pair of parallel sides?",
+                    options: ["Rectangle", "Rhombus", "Trapezoid", "Square"],
                     correct: 2,
-                    explanation: "Correlation shows a relationship but doesn't prove causation - other factors may be involved"
+                    explanation: "A trapezoid is defined as a quadrilateral with exactly one pair of parallel sides",
+                    topic: "Quadrilateral"
                 },
                 {
-                    id: 39,
-                    text: "A cube is rotated 180° around the vertical axis. If a face was originally pointing North, where does it point now?",
-                    options: ["North", "East", "South", "West"],
+                    id: 5,
+                    text: "In a right triangle, the side opposite the right angle is called:",
+                    options: ["Adjacent", "Opposite", "Hypotenuse", "Base"],
                     correct: 2,
-                    explanation: "A 180° rotation reverses the direction, so North → South"
+                    explanation: "The hypotenuse is the longest side of a right triangle, opposite the right angle",
+                    topic: "Triangles"
                 },
                 {
-                    id: 40,
-                    text: "What is the probability of an impossible event?",
-                    options: ["0.5", "1", "0", "Undefined"],
+                    id: 6,
+                    text: "A circuit has a voltage of 12V and a resistance of 4Ω. What is the current?",
+                    options: ["1A", "2A", "3A", "4A"],
                     correct: 2,
-                    explanation: "Probability ranges from 0 (impossible) to 1 (certain)"
+                    explanation: "Using Ohm's Law: I = V/R = 12V/4Ω = 3A",
+                    topic: "Ohm's Law"
+                },
+                {
+                    id: 7,
+                    text: "Which reaction is a double displacement reaction? AgNO₃ + NaCl → AgCl + NaNO₃",
+                    options: ["Synthesis", "Decomposition", "Single displacement", "Double displacement"],
+                    correct: 3,
+                    explanation: "This is a double displacement reaction where the cations and anions switch partners",
+                    topic: "Double Displacement"
+                },
+                {
+                    id: 8,
+                    text: "If 2 moles of gas occupy 44.8L at STP, what volume will 3 moles occupy at STP?",
+                    options: ["22.4L", "44.8L", "67.2L", "89.6L"],
+                    correct: 2,
+                    explanation: "At STP, 1 mole of gas occupies 22.4L. So 3 moles occupy 3 × 22.4 = 67.2L",
+                    topic: "Ideal Gas Law"
+                },
+                {
+                    id: 9,
+                    text: "A parallelogram with four equal sides is called a:",
+                    options: ["Rectangle", "Rhombus", "Trapezoid", "Kite"],
+                    correct: 1,
+                    explanation: "A rhombus is a parallelogram with four equal sides",
+                    topic: "Quadrilateral"
+                },
+                {
+                    id: 10,
+                    text: "In a 30-60-90 triangle, the ratio of sides is:",
+                    options: ["1:1:√2", "1:1:1", "1:2:3", "1:√3:2"],
+                    correct: 3,
+                    explanation: "In a 30-60-90 triangle, sides are in ratio 1 (opposite 30°) : √3 (opposite 60°) : 2 (hypotenuse)",
+                    topic: "Triangles"
+                },
+                {
+                    id: 11,
+                    text: "What current flows through a 10Ω resistor with 50V across it?",
+                    options: ["0.2A", "2A", "5A", "50A"],
+                    correct: 2,
+                    explanation: "I = V/R = 50V/10Ω = 5A",
+                    topic: "Ohm's Law"
+                },
+                {
+                    id: 12,
+                    text: "What are the products of: Na₂CO₃ + CaCl₂ → ?",
+                    options: ["NaCl + CaCO₃", "Na₂Cl₂ + CaCO₃", "NaCl₂ + CaCO₃", "Na₂Cl + CaCO₃"],
+                    correct: 0,
+                    explanation: "Double displacement: Na₂CO₃ + CaCl₂ → 2NaCl + CaCO₃",
+                    topic: "Double Displacement"
+                },
+                {
+                    id: 13,
+                    text: "If a gas at 300K and 1atm pressure is heated to 600K at constant volume, what is the new pressure?",
+                    options: ["0.5 atm", "1 atm", "2 atm", "4 atm"],
+                    correct: 2,
+                    explanation: "At constant volume, P₁/T₁ = P₂/T₂. So 1/300 = P₂/600 → P₂ = 600/300 = 2 atm",
+                    topic: "Ideal Gas Law"
+                },
+                {
+                    id: 14,
+                    text: "Which quadrilateral has diagonals that bisect each other at right angles?",
+                    options: ["Parallelogram", "Rectangle", "Rhombus", "Trapezoid"],
+                    correct: 2,
+                    explanation: "A rhombus has diagonals that bisect each other at right angles",
+                    topic: "Quadrilateral"
+                },
+                {
+                    id: 15,
+                    text: "The area of a triangle with base 10cm and height 8cm is:",
+                    options: ["20 cm²", "40 cm²", "60 cm²", "80 cm²"],
+                    correct: 1,
+                    explanation: "Area = (base × height)/2 = (10 × 8)/2 = 80/2 = 40 cm²",
+                    topic: "Triangles"
                 }
             ],
             reading: [
                 {
-                    id: 41,
+                    id: 1,
                     text: "Read the passage: 'The Philippine eagle, also known as the monkey-eating eagle, is critically endangered with fewer than 400 pairs remaining in the wild. Deforestation and hunting have drastically reduced its habitat.' What is the main idea?",
                     options: ["The Philippine eagle prefers to eat monkeys", "There are exactly 400 Philippine eagles left","The Philippine eagle is endangered due to habitat loss and hunting", "Deforestation only affects Philippine eagles"],
                     correct: 2,
                     explanation: "The main idea summarizes the key points about the eagle's endangered status and causes"
                 },
                 {
-                    id: 42,
+                    id: 2,
                     text: "'The scientist was meticulous in her research, checking every detail multiple times.' Based on context, what does 'meticulous' mean?",
                     options: ["Quick and efficient", "Careless and sloppy", "Creative and imaginative", "Extremely careful and precise"],
                     correct: 3,
                     explanation: "The context about checking details multiple times suggests 'meticulous' means very careful"
                 },
                 {
-                    id: 43,
+                    id: 3,
                     text: "If a passage states 'All mammals are warm-blooded, and whales are mammals,' what can you infer about whales?",
                     options: ["Whales are the largest mammals", "Whales are warm-blooded", "Whales live in the ocean", "All warm-blooded animals are whales"],
                     correct: 1,
                     explanation: "Following the logical chain: whales are mammals → all mammals are warm-blooded → therefore whales are warm-blooded"
                 },
                 {
-                    id: 44,
+                    id: 4,
                     text: "Which sentence best supports the claim that recycling reduces landfill waste?",
                     options: ["Recycling bins are blue in many cities", "Recycling diverts materials from landfills, extending their usable lifespan", "Some people find recycling inconvenient", "Landfills can produce methane gas"],
                     correct: 1,
                     explanation: "This option directly connects recycling to reduced landfill use"
                 },
                 {
-                    id: 45,
+                    id: 5,
                     text: "What is the author's likely purpose in writing: 'Our city's parks are overcrowded, poorly maintained, and lack basic facilities. We must invest in green spaces for community health.'?",
                     options: ["To describe all city parks", "To tell a story about a park", "To persuade officials to improve parks", "To explain how to build a park"],
-                    correct: 1,
-                    explanation: "The critical tone and call to action suggest a persuasive purpose"
-                },
-                {
-                    id: 46,
-                    text: "Read: 'The experiment's results were anomalous - they directly contradicted all previous findings.' What does 'anomalous' mean?",
-                    options: ["Perfectly matching predictions", "Unimportant", "Highly accurate", "Deviating from what's expected"],
-                    correct: 3,
-                    explanation: "The context about contradicting previous findings suggests 'anomalous' means unexpected deviation"
-                },
-                {
-                    id: 47,
-                    text: "Which title best fits an article about newly discovered health benefits of dark chocolate?",
-                    options: ["The History of Chocolate", "Dark Chocolate: Sweet News for Your Heart", "How Candy Is Made", "Why Kids Love Sweets"],
-                    correct: 1,
-                    explanation: "This title captures both the subject (dark chocolate) and the focus (health benefits)"
-                },
-                {
-                    id: 48,
-                    text: "What is the tone of: 'Despite the team's valiant effort, the last-minute goal crushed their championship hopes.'?",
-                    options: ["Joyful", "Angry", "Indifferent", "Sympathetic"],
-                    correct: 3,
-                    explanation: "Words like 'valiant' and 'crushed' suggest a sympathetic tone toward the losing team"
-                },
-                {
-                    id: 49,
-                    text: "Which evidence would best support that climate change is accelerating?",
-                    options: ["A cold winter in one region", "Data showing rising global temperatures and shrinking ice caps over decades", "An opinion about weather patterns", "A single hot summer"],
-                    correct: 1,
-                    explanation: "Long-term, measurable data across multiple indicators provides strongest evidence"
-                },
-                {
-                    id: 50,
-                    text: "'The ancient library was a repository of knowledge, containing scrolls from across the known world.' What is the best definition of 'repository' in this context?",
-                    options: ["A type of book", "A place where things are stored", "A reading room", "A government building"],
-                    correct: 1,
-                    explanation: "The context about containing scrolls suggests 'repository' means a storage place"
-                },
-                {
-                    id: 51,
-                    text: "Which statement is an opinion rather than a fact?",
-                    options: ["Vanilla ice cream is white", "Vanilla comes from orchid beans", "Vanilla was first cultivated in Mexico", "Vanilla is the most delicious ice cream flavor"],
-                    correct: 3,
-                    explanation: "Taste preferences are subjective opinions, while the others are verifiable facts"
-                },
-                {
-                    id: 52,
-                    text: "What is the relationship between these sentences: (1) 'The inventor tested hundreds of materials.' (2) 'After years of experimentation, she developed a revolutionary battery.'?",
-                    options: ["Sentence 2 contradicts sentence 1", "The sentences are unrelated", "Sentence 2 happens before sentence 1","Sentence 1 explains the process that led to sentence 2"],
-                    correct: 3,
-                    explanation: "The testing in sentence 1 led to the development in sentence 2, showing a cause-effect relationship"
-                },
-                {
-                    id: 53,
-                    text: "Which graphic would best illustrate a text about the water cycle?",
-                    options: ["A photo of a waterfall", "A diagram showing evaporation, condensation, and precipitation", "A chart of ocean temperatures", "A map of rivers"],
-                    correct: 1,
-                    explanation: "A process diagram would best illustrate the cyclical nature of the water cycle"
-                },
-                {
-                    id: 54,
-                    text: "What is the primary purpose of a research paper's abstract?",
-                    options: ["To summarize the paper's key points concisely", "To list all references used", "To provide detailed methodology", "To acknowledge contributors"],
-                    correct: 0,
-                    explanation: "An abstract gives readers a brief overview of the paper's purpose, methods, and conclusions"
-                },
-                {
-                    id: 55,
-                    text: "Which revision improves clarity: 'The car that was red went fast.'?",
-                    options: ["The fast car was red.", "The red car went fast.", "The car, red, went fast.", "The car that was the color red went fast."],
-                    correct: 1,
-                    explanation: "This version is most concise while maintaining all original information"
-                },
-                {
-                    id: 56,
-                    text: "Read: 'The committee reached a consensus after lengthy debate.' What does 'consensus' mean?",
-                    options: ["General agreement", "Majority opinion", "Final vote", "Temporary compromise"],
-                    correct: 0,
-                    explanation: "Consensus implies general agreement among group members"
-                },
-                {
-                    id: 57,
-                    text: "Which source would be most credible for a paper on climate change?",
-                    options: ["Peer-reviewed scientific journal","Personal blog", "Social media post", "Advertisement"],
-                    correct: 0,
-                    explanation: "Peer-reviewed journals undergo rigorous expert review, making them most credible"
-                },
-                {
-                    id: 58,
-                    text: "What literary device is used in: 'The wind whispered through the trees'?",
-                    options: ["Simile", "Hyperbole", "Personification", "Alliteration"],
                     correct: 2,
-                    explanation: "Giving human characteristics (whispering) to non-human things (wind) is personification"
-                },
-                {
-                    id: 59,
-                    text: "Which transition best connects these ideas: 'The theory was controversial. ____, subsequent experiments confirmed its predictions.'?",
-                    options: ["Similarly", "Consequently", "Meanwhile", "However"],
-                    correct: 3,
-                    explanation: "However shows contrast between initial controversy and later confirmation"
-                },
-                {
-                    id: 60,
-                    text: "What is the best conclusion for an essay that discusses both benefits and drawbacks of remote work?",
-                    options: ["Remote work is clearly better than office work", "While remote work offers flexibility, it also presents challenges in collaboration that need addressing", "Nobody should ever work remotely", "All companies must adopt remote work immediately"],
-                    correct: 1,
-                    explanation: "This balanced conclusion acknowledges both sides discussed in the essay"
+                    explanation: "The critical tone and call to action suggest a persuasive purpose"
                 }
             ]
         };
-
 
         // Initialize the test
         document.addEventListener('DOMContentLoaded', function() {
             generateTest();
             updateProgress();
+            startTimer(180 * 60); // 180 minutes in seconds
         });
 
         // Generate the test questions
@@ -920,6 +820,13 @@
             questionHeader.appendChild(questionNumber);
             questionHeader.appendChild(subjectTag);
             
+            if (question.topic) {
+                const topicTag = document.createElement('span');
+                topicTag.className = 'topic-tag';
+                topicTag.textContent = question.topic;
+                questionHeader.appendChild(topicTag);
+            }
+            
             const questionText = document.createElement('div');
             questionText.className = 'question-text';
             questionText.textContent = question.text;
@@ -934,7 +841,7 @@
                 
                 const radio = document.createElement('input');
                 radio.type = 'radio';
-                radio.name = `question-${question.id}`;
+                radio.name = `question-${question.id}-${subject}`;
                 
                 const optionText = document.createElement('span');
                 optionText.textContent = option;
@@ -947,7 +854,7 @@
             const explanationDiv = document.createElement('div');
             explanationDiv.className = 'explanation';
             explanationDiv.textContent = question.explanation;
-            explanationDiv.id = `explanation-${question.id}`;
+            explanationDiv.id = `explanation-${question.id}-${subject}`;
             
             questionDiv.appendChild(questionHeader);
             questionDiv.appendChild(questionText);
@@ -991,6 +898,28 @@
             document.getElementById('answered-count').textContent = answered;
         }
 
+        // Timer function
+        function startTimer(duration) {
+            let timer = duration, minutes, seconds;
+            const timerElement = document.getElementById('timer');
+            
+            const interval = setInterval(function() {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                
+                timerElement.textContent = "Time: " + minutes + ":" + seconds;
+                
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    submitTest();
+                    timerElement.textContent = "Time's up!";
+                }
+            }, 1000);
+        }
+
         // Submit the test
         function submitTest() {
             let correct = 0;
@@ -1018,7 +947,7 @@
                         }
                         
                         // Show explanation
-                        document.getElementById(`explanation-${q.id}`).style.display = 'block';
+                        document.getElementById(`explanation-${q.id}-${subject}`).style.display = 'block';
                     }
                 });
             }
