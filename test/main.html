@@ -14,18 +14,18 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
             min-height: 100vh;
             padding: 20px;
             color: #333;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
             overflow: hidden;
         }
         
@@ -38,7 +38,7 @@
         }
         
         .header h1 {
-            font-size: 2.2em;
+            font-size: 2.4em;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
@@ -46,6 +46,8 @@
         .header p {
             opacity: 0.9;
             font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .test-info {
@@ -58,6 +60,7 @@
             color: #2c3e50;
             margin-bottom: 10px;
             text-align: center;
+            font-size: 1.4em;
         }
         
         .info-grid {
@@ -74,13 +77,19 @@
             border-left: 4px solid #3498db;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .progress-bar {
             background: #ecf0f1;
-            height: 8px;
-            border-radius: 4px;
-            margin: 20px 0;
+            height: 10px;
+            border-radius: 5px;
+            margin: 25px 0;
             overflow: hidden;
         }
         
@@ -88,7 +97,7 @@
             background: linear-gradient(90deg, #3498db, #2ecc71);
             height: 100%;
             width: 0%;
-            transition: width 0.3s ease;
+            transition: width 0.5s ease;
         }
         
         .subject-nav {
@@ -102,21 +111,23 @@
         }
         
         .subject-btn {
-            padding: 10px 20px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 20px;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            font-size: 1.1em;
             display: flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         .subject-btn.math { background: #e74c3c; color: white; }
         .subject-btn.science { background: #27ae60; color: white; }
         .subject-btn.reading { background: #9b59b6; color: white; }
-        .subject-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .subject-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 8px rgba(0,0,0,0.15); }
         
         .test-content {
             padding: 30px;
@@ -133,6 +144,9 @@
             border-radius: 10px;
             margin-bottom: 20px;
             text-align: center;
+            position: sticky;
+            top: 10px;
+            z-index: 10;
         }
         
         .section-header h2 {
@@ -147,20 +161,18 @@
             padding: 20px;
             border-left: 5px solid #3498db;
             transition: all 0.3s ease;
-            position: relative;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
         }
         
         .question:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
         }
         
         .question-header {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
         }
         
         .question-number {
@@ -169,15 +181,17 @@
             padding: 8px 15px;
             border-radius: 20px;
             font-weight: bold;
+            margin-right: 15px;
             min-width: 60px;
             text-align: center;
+            font-size: 1.1em;
         }
         
         .subject-tag {
             color: white;
-            padding: 4px 12px;
+            padding: 5px 15px;
             border-radius: 15px;
-            font-size: 0.8em;
+            font-size: 0.9em;
             font-weight: bold;
         }
         
@@ -195,23 +209,23 @@
         
         .passage {
             background: #fff;
-            border: 1px solid #ddd;
+            border: 1px solid #e0e0e0;
             padding: 15px;
             border-radius: 8px;
-            margin: 10px 0;
+            margin: 15px 0;
             font-style: italic;
             color: #555;
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
         .options {
             display: grid;
-            gap: 10px;
+            gap: 12px;
         }
         
         .option {
             background: white;
-            border: 2px solid #ecf0f1;
+            border: 2px solid #e0e7ff;
             border-radius: 8px;
             padding: 12px 15px;
             cursor: pointer;
@@ -227,8 +241,9 @@
         }
         
         .option input[type="radio"] {
-            margin-right: 10px;
+            margin-right: 12px;
             transform: scale(1.2);
+            cursor: pointer;
         }
         
         .option.selected {
@@ -243,21 +258,32 @@
             background: #f8f9fa;
         }
         
+        .stats {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.2em;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
         .submit-btn {
             background: linear-gradient(45deg, #27ae60, #2ecc71);
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.1em;
-            border-radius: 25px;
+            padding: 15px 45px;
+            font-size: 1.2em;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
             margin: 10px;
+            font-weight: bold;
         }
         
         .submit-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
         }
         
@@ -265,17 +291,18 @@
             background: linear-gradient(45deg, #e74c3c, #c0392b);
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.1em;
-            border-radius: 25px;
+            padding: 15px 45px;
+            font-size: 1.2em;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
             margin: 10px;
+            font-weight: bold;
         }
         
         .reset-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
         }
         
@@ -285,72 +312,75 @@
             padding: 30px;
             border-radius: 10px;
             margin-top: 20px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .score {
             text-align: center;
-            font-size: 2em;
+            font-size: 2.2em;
             margin-bottom: 20px;
             color: #2c3e50;
+            font-weight: bold;
         }
         
         .score-breakdown {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
         
         .subject-score {
             background: white;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 10px;
             text-align: center;
-            border-left: 4px solid #3498db;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .subject-score:hover {
+            transform: translateY(-5px);
         }
         
         .explanation {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
+            background: #e8f4f8;
+            border: 1px solid #b6e0fe;
             padding: 15px;
             border-radius: 8px;
-            margin-top: 10px;
+            margin-top: 15px;
             display: none;
+            font-size: 0.95em;
             line-height: 1.6;
         }
         
         .correct { border-left-color: #27ae60 !important; }
         .incorrect { border-left-color: #e74c3c !important; }
         
-        .stats {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+        .math-score { border-left-color: #e74c3c; }
+        .science-score { border-left-color: #27ae60; }
+        .reading-score { border-left-color: #9b59b6; }
+        
+        .result-title {
             text-align: center;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 1.4em;
         }
         
-        .timer {
-            background: #2c3e50;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        
-        .topic-tag {
-            background: #3498db;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: 0.75em;
-            margin-left: 5px;
-            display: inline-block;
+        .feedback {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: #e8f4f8;
         }
         
         @media (max-width: 768px) {
@@ -375,14 +405,14 @@
                 align-items: center;
             }
             
-            .question-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .subject-btn {
+                width: 100%;
+                justify-content: center;
             }
             
             .submit-btn, .reset-btn {
                 width: 100%;
-                margin: 5px 0;
+                margin: 10px 0;
             }
         }
     </style>
@@ -391,8 +421,7 @@
     <div class="container">
         <div class="header">
             <h1>🎓 DOST Scholarship Practice Test</h1>
-            <p>Complete 100-Question Practice Exam</p>
-            <div class="timer" id="timer">Time: 03:00:00</div>
+            <p>Comprehensive 100-Question Practice Exam with Detailed Explanations</p>
         </div>
         
         <div class="test-info">
@@ -402,13 +431,13 @@
                     <strong>Total Questions:</strong> 100
                 </div>
                 <div class="info-item">
-                    <strong>Mathematics:</strong> 40 questions
+                    <strong>Mathematics:</strong> 34 questions
                 </div>
                 <div class="info-item">
-                    <strong>Science:</strong> 40 questions
+                    <strong>Science:</strong> 33 questions
                 </div>
                 <div class="info-item">
-                    <strong>Reading:</strong> 20 questions
+                    <strong>Reading:</strong> 33 questions
                 </div>
                 <div class="info-item">
                     <strong>Time Limit:</strong> 180 minutes
@@ -442,300 +471,761 @@
         
         <div class="results" id="results">
             <div class="score" id="score"></div>
+            <div class="feedback" id="feedback"></div>
+            <div class="result-title">Subject Breakdown</div>
             <div class="score-breakdown" id="breakdown"></div>
         </div>
     </div>
 
     <script>
+        // Comprehensive 100 questions (34 Math, 33 Science, 33 Reading)
         const questions = {
             math: [
                 {
                     id: 1,
-                    text: "Solve for x: 3x + 7 = 22",
-                    options: ["x = 3", "x = 5", "x = 7", "x = 15"],
-                    correct: 1,
-                    explanation: "Subtract 7 from both sides: 3x = 15. Then divide by 3: x = 5",
-                    topic: "Algebra Basics"
+                    text: "Using Ohm's Law, if the voltage is 12V and the resistance is 4Ω, what is the current?",
+                    options: ["3A", "4A", "6A", "48A"],
+                    correct: 0,
+                    explanation: "Ohm's Law: I = V/R = 12V/4Ω = 3A"
                 },
                 {
                     id: 2,
-                    text: "Calculate 456 ÷ 12 using long division",
-                    options: ["38", "42", "48", "52"],
-                    correct: 0,
-                    explanation: "12 × 38 = 456, so 456 ÷ 12 = 38",
-                    topic: "Long Division"
+                    text: "Perform polynomial long division: (x³ - 2x² - 4x + 8) ÷ (x - 2)",
+                    options: ["x² - 4", "x² - 4x + 4", "x² + 4", "x² + 4x - 4"],
+                    correct: 1,
+                    explanation: "After division: x² - 4x + 4. Verification: (x-2)(x²-4x+4) = x³-4x²+4x-2x²+8x-8 = x³-6x²+12x-8"
                 },
                 {
                     id: 3,
-                    text: "A quadrilateral has angles 75°, 105°, and 120°. What is the fourth angle?",
-                    options: ["40°", "50°", "60°", "70°"],
-                    correct: 2,
-                    explanation: "Sum of interior angles in quadrilateral is 360°. 75 + 105 + 120 = 300. 360 - 300 = 60°",
-                    topic: "Quadrilateral"
+                    text: "Solve for x: 3(2x - 5) = 4x + 7",
+                    options: ["x = 11", "x = 8", "x = 9", "x = 10"],
+                    correct: 0,
+                    explanation: "6x - 15 = 4x + 7 → 6x - 4x = 7 + 15 → 2x = 22 → x = 11"
                 },
                 {
                     id: 4,
-                    text: "Convert 5π/6 radians to degrees",
-                    options: ["120°", "135°", "150°", "180°"],
-                    correct: 2,
-                    explanation: "To convert radians to degrees: degrees = radians × 180/π. So (5π/6) × (180/π) = 150°",
-                    topic: "Radians and Degrees"
+                    text: "A double displacement reaction occurs between silver nitrate and sodium chloride. What are the products?",
+                    options: ["AgCl and NaNO₃", "AgNa and ClNO₃", "AgNO₃ and NaCl", "AgCl₂ and NaNO₃"],
+                    correct: 0,
+                    explanation: "AgNO₃ + NaCl → AgCl (precipitate) + NaNO₃"
                 },
                 {
                     id: 5,
-                    text: "A triangle has sides 7cm, 24cm, and 25cm. What type of triangle is this?",
-                    options: ["Acute", "Obtuse", "Right", "Equilateral"],
+                    text: "Using the ideal gas law (PV = nRT), if pressure is doubled and temperature is halved while volume remains constant, what happens to n?",
+                    options: ["n doubles", "n halves", "n remains the same", "n quadruples"],
                     correct: 2,
-                    explanation: "7² + 24² = 49 + 576 = 625 = 25². This satisfies the Pythagorean theorem, so it's a right triangle",
-                    topic: "Triangles"
+                    explanation: "PV = nRT → n = PV/RT. When P→2P and T→T/2, n = (2P)V/R(T/2) = (2P)V × 2/(RT) = 4PV/RT → n quadruples"
                 },
                 {
                     id: 6,
-                    text: "Solve the equation: 2x² - 8x + 6 = 0",
-                    options: ["x = 1, x = 3", "x = 2, x = 4", "x = 1, x = 2", "x = 3, x = 4"],
-                    correct: 0,
-                    explanation: "Factoring: 2(x² - 4x + 3) = 2(x-1)(x-3) = 0. Solutions x=1 and x=3",
-                    topic: "Algebra Basics"
+                    text: "What is the sum of interior angles in a quadrilateral?",
+                    options: ["180°", "270°", "360°", "540°"],
+                    correct: 2,
+                    explanation: "The sum of interior angles in any quadrilateral is 360°"
                 },
                 {
                     id: 7,
-                    text: "Find the area of a parallelogram with base 12cm and height 8cm",
-                    options: ["48 cm²", "72 cm²", "96 cm²", "120 cm²"],
-                    correct: 2,
-                    explanation: "Area = base × height = 12cm × 8cm = 96 cm²",
-                    topic: "Quadrilateral"
+                    text: "In a right triangle with angles 30°-60°-90°, if the side opposite 30° is 5cm, what is the hypotenuse?",
+                    options: ["5 cm", "10 cm", "5√3 cm", "10√3 cm"],
+                    correct: 1,
+                    explanation: "In 30-60-90 triangle, hypotenuse is twice the shorter side (opposite 30°) → 2×5 = 10cm"
                 },
                 {
                     id: 8,
-                    text: "Calculate: (3/4) ÷ (2/5)",
-                    options: ["3/10", "15/8", "8/15", "10/3"],
-                    correct: 1,
-                    explanation: "Dividing fractions: (3/4) ÷ (2/5) = (3/4) × (5/2) = 15/8",
-                    topic: "Algebra Basics"
+                    text: "Convert 5π/6 radians to degrees",
+                    options: ["150°", "120°", "210°", "180°"],
+                    correct: 0,
+                    explanation: "Degrees = radians × (180/π) = (5π/6) × (180/π) = 5×30 = 150°"
                 },
                 {
                     id: 9,
-                    text: "A circle has a central angle of 2 radians. If the radius is 10cm, what is the arc length?",
-                    options: ["5 cm", "10 cm", "15 cm", "20 cm"],
-                    correct: 3,
-                    explanation: "Arc length = radius × angle (in radians) = 10 × 2 = 20 cm",
-                    topic: "Radians and Degrees"
+                    text: "Simplify: (x² - 9)/(x² + 6x + 9)",
+                    options: ["(x-3)/(x+3)", "x-3", "x+3", "1"],
+                    correct: 0,
+                    explanation: "Numerator: x²-9 = (x-3)(x+3), Denominator: x²+6x+9 = (x+3)² → (x-3)(x+3)/(x+3)² = (x-3)/(x+3)"
                 },
                 {
                     id: 10,
-                    text: "Find the missing side in the right triangle: legs 5cm and 12cm",
-                    options: ["10 cm", "13 cm", "15 cm", "17 cm"],
-                    correct: 1,
-                    explanation: "Using Pythagorean theorem: √(5² + 12²) = √(25 + 144) = √169 = 13 cm",
-                    topic: "Triangles"
+                    text: "Solve the system: 2x + y = 8 and x - y = 1",
+                    options: ["x=3, y=2", "x=2, y=4", "x=4, y=0", "x=5, y=-2"],
+                    correct: 0,
+                    explanation: "Add equations: 3x = 9 → x=3. Substitute: 3-y=1 → y=2"
                 },
                 {
                     id: 11,
-                    text: "Solve for x: 4(x - 3) = 2x + 10",
-                    options: ["x = 5", "x = 7", "x = 11", "x = 13"],
-                    correct: 2,
-                    explanation: "4x - 12 = 2x + 10 → 4x - 2x = 10 + 12 → 2x = 22 → x = 11",
-                    topic: "Algebra Basics"
+                    text: "Find the derivative of f(x) = 3x⁴ - 2x² + 5x - 7",
+                    options: ["12x³ - 4x + 5", "12x³ - 4x", "3x³ - 2x + 5", "12x³ - 4x + 5x"],
+                    correct: 0,
+                    explanation: "Using power rule: d/dx(3x⁴) = 12x³, d/dx(-2x²) = -4x, d/dx(5x) = 5, d/dx(-7)=0"
                 },
                 {
                     id: 12,
-                    text: "Calculate 789 ÷ 15 using long division",
-                    options: ["52.6", "53.5", "54.2", "55.3"],
-                    correct: 0,
-                    explanation: "15 × 52 = 780. 789 - 780 = 9. So 52 + 9/15 = 52 + 3/5 = 52.6",
-                    topic: "Long Division"
+                    text: "Calculate ∫(2x + 3) dx from 0 to 2",
+                    options: ["8", "10", "12", "14"],
+                    correct: 1,
+                    explanation: "Antiderivative: x² + 3x. Evaluate: (4 + 6) - (0 + 0) = 10"
                 },
                 {
                     id: 13,
-                    text: "The diagonals of a rhombus are 16cm and 12cm. What is its area?",
-                    options: ["96 cm²", "108 cm²", "112 cm²", "128 cm²"],
+                    text: "If log₃(x) = 4, what is x?",
+                    options: ["81", "12", "64", "27"],
                     correct: 0,
-                    explanation: "Area of rhombus = (d₁ × d₂)/2 = (16 × 12)/2 = 192/2 = 96 cm²",
-                    topic: "Quadrilateral"
+                    explanation: "log₃(x) = 4 means 3⁴ = x → x = 81"
                 },
                 {
                     id: 14,
-                    text: "Convert 225° to radians",
-                    options: ["3π/4", "4π/5", "5π/4", "5π/3"],
-                    correct: 2,
-                    explanation: "Radians = degrees × π/180 = 225 × π/180 = 5π/4",
-                    topic: "Radians and Degrees"
+                    text: "Factor completely: 4x² - 25",
+                    options: ["(2x-5)(2x+5)", "(4x-5)(x+5)", "(2x-5)²", "(4x-25)(x+1)"],
+                    correct: 0,
+                    explanation: "Difference of squares: a² - b² = (a-b)(a+b) → 4x² - 25 = (2x)² - 5² = (2x-5)(2x+5)"
                 },
                 {
                     id: 15,
-                    text: "A triangle has angles 40°, 60°, and 80°. What type of triangle is this?",
-                    options: ["Acute", "Obtuse", "Right", "Isosceles"],
+                    text: "What is the equation of a circle with center (3, -2) and radius 5?",
+                    options: ["(x-3)² + (y+2)² = 25", "(x+3)² + (y-2)² = 25", "(x-3)² + (y+2)² = 5", "(x+3)² + (y-2)² = 5"],
                     correct: 0,
-                    explanation: "All angles are less than 90°, so it's an acute triangle",
-                    topic: "Triangles"
+                    explanation: "Circle equation: (x-h)² + (y-k)² = r² → (x-3)² + (y-(-2))² = 5²"
+                },
+                {
+                    id: 16,
+                    text: "Find the slope of the line perpendicular to 3x - 4y = 12",
+                    options: ["-4/3", "4/3", "3/4", "-3/4"],
+                    correct: 0,
+                    explanation: "First find slope of given line: 3x - 4y = 12 → -4y = -3x + 12 → y = (3/4)x - 3. Slope is 3/4. Perpendicular slope is negative reciprocal: -4/3"
+                },
+                {
+                    id: 17,
+                    text: "Solve for x: |2x - 5| = 11",
+                    options: ["x=8 or x=-3", "x=8 or x=3", "x=-8 or x=3", "x=-8 or x=-3"],
+                    correct: 0,
+                    explanation: "Case 1: 2x-5=11 → 2x=16 → x=8. Case 2: 2x-5=-11 → 2x=-6 → x=-3"
+                },
+                {
+                    id: 18,
+                    text: "If f(x) = x² - 4 and g(x) = x + 3, find (f ∘ g)(x)",
+                    options: ["x² + 6x + 5", "x² + 6x + 13", "x² + 6x + 9", "x² + 6x - 4"],
+                    correct: 0,
+                    explanation: "(f ∘ g)(x) = f(g(x)) = f(x+3) = (x+3)² - 4 = x² + 6x + 9 - 4 = x² + 6x + 5"
+                },
+                {
+                    id: 19,
+                    text: "What is the domain of f(x) = √(x - 3)?",
+                    options: ["x > 3", "x ≥ 3", "All real numbers", "x ≤ 3"],
+                    correct: 1,
+                    explanation: "Square root requires non-negative argument: x - 3 ≥ 0 → x ≥ 3"
+                },
+                {
+                    id: 20,
+                    text: "Calculate the distance between points (1, 2) and (4, 6)",
+                    options: ["5", "6", "√13", "√20"],
+                    correct: 0,
+                    explanation: "Distance = √[(4-1)² + (6-2)²] = √[9 + 16] = √25 = 5"
+                },
+                {
+                    id: 21,
+                    text: "Find the vertex of the parabola y = x² - 6x + 8",
+                    options: ["(3, -1)", "(-3, -1)", "(3, 1)", "(-3, 1)"],
+                    correct: 0,
+                    explanation: "x-coordinate: -b/2a = 6/2 = 3. y = 3² - 6(3) + 8 = 9 - 18 + 8 = -1 → (3, -1)"
+                },
+                {
+                    id: 22,
+                    text: "Solve the inequality: 2x - 5 < 3x + 4",
+                    options: ["x > -9", "x < -9", "x > 9", "x < 9"],
+                    correct: 0,
+                    explanation: "2x - 5 < 3x + 4 → -5 - 4 < 3x - 2x → -9 < x → x > -9"
+                },
+                {
+                    id: 23,
+                    text: "If sinθ = 3/5 and θ is in Q1, find cosθ",
+                    options: ["4/5", "3/4", "5/4", "5/3"],
+                    correct: 0,
+                    explanation: "sin²θ + cos²θ = 1 → (3/5)² + cos²θ = 1 → 9/25 + cos²θ = 1 → cos²θ = 16/25 → cosθ = 4/5 (positive in Q1)"
+                },
+                {
+                    id: 24,
+                    text: "What is the probability of rolling a sum of 7 with two dice?",
+                    options: ["1/6", "1/12", "1/18", "1/36"],
+                    correct: 0,
+                    explanation: "Favorable outcomes: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) → 6. Total outcomes: 36. Probability: 6/36 = 1/6"
+                },
+                {
+                    id: 25,
+                    text: "Find the median of: 12, 7, 15, 8, 10, 14, 9",
+                    options: ["10", "12", "9", "11"],
+                    correct: 0,
+                    explanation: "Ordered: 7,8,9,10,12,14,15. Middle value is 10"
+                },
+                {
+                    id: 26,
+                    text: "Simplify: (2 + 3i)(4 - 5i)",
+                    options: ["23 + 2i", "8 - 15i", "23 - 2i", "8 + 15i"],
+                    correct: 0,
+                    explanation: "(2)(4) + (2)(-5i) + (3i)(4) + (3i)(-5i) = 8 -10i +12i -15i² = 8 + 2i -15(-1) = 8 + 2i + 15 = 23 + 2i"
+                },
+                {
+                    id: 27,
+                    text: "Solve for x: 4ˣ = 64",
+                    options: ["3", "4", "2", "5"],
+                    correct: 0,
+                    explanation: "64 = 4³ → 4ˣ = 4³ → x = 3"
+                },
+                {
+                    id: 28,
+                    text: "What is the range of f(x) = |x - 2|?",
+                    options: ["[0, ∞)", "[2, ∞)", "(-∞, ∞)", "(-∞, 2]"],
+                    correct: 0,
+                    explanation: "Absolute value is always non-negative → range [0, ∞)"
+                },
+                {
+                    id: 29,
+                    text: "Find the inverse of f(x) = (2x + 1)/(x - 3)",
+                    options: ["f⁻¹(x) = (3x + 1)/(x - 2)", "f⁻¹(x) = (3x - 1)/(x + 2)", "f⁻¹(x) = (3x + 1)/(x + 2)", "f⁻¹(x) = (3x - 1)/(x - 2)"],
+                    correct: 0,
+                    explanation: "Set y = (2x+1)/(x-3). Swap x and y: x = (2y+1)/(y-3). Solve for y: x(y-3) = 2y+1 → xy - 3x = 2y + 1 → xy - 2y = 3x + 1 → y(x-2) = 3x+1 → y = (3x+1)/(x-2)"
+                },
+                {
+                    id: 30,
+                    text: "Calculate lim(x→0) (sin(3x))/x",
+                    options: ["3", "1", "0", "∞"],
+                    correct: 0,
+                    explanation: "lim(x→0) sin(kx)/x = k → k=3"
+                },
+                {
+                    id: 31,
+                    text: "What is the area of an equilateral triangle with side 6?",
+                    options: ["9√3", "12√3", "18", "18√3"],
+                    correct: 0,
+                    explanation: "Area = (s²√3)/4 = (36√3)/4 = 9√3"
+                },
+                {
+                    id: 32,
+                    text: "Solve for x: log₂(x) + log₂(x-2) = 3",
+                    options: ["x=4", "x=2", "x=6", "x=8"],
+                    correct: 0,
+                    explanation: "log₂[x(x-2)] = 3 → x(x-2) = 2³ = 8 → x² - 2x - 8 = 0 → (x-4)(x+2)=0 → x=4 (x=-2 invalid)"
+                },
+                {
+                    id: 33,
+                    text: "Find the sum of the first 20 positive even integers",
+                    options: ["420", "400", "440", "380"],
+                    correct: 0,
+                    explanation: "Sequence: 2,4,6,...,40. Sum = n(a₁+aₙ)/2 = 20(2+40)/2 = 20×21 = 420"
+                },
+                {
+                    id: 34,
+                    text: "Convert 225° to radians",
+                    options: ["5π/4", "4π/3", "3π/2", "5π/3"],
+                    correct: 0,
+                    explanation: "Radians = degrees × π/180 = 225 × π/180 = 5π/4"
                 }
             ],
             science: [
                 {
-                    id: 1,
-                    text: "What is Ohm's Law?",
-                    options: ["V = I/R", "V = I × R", "P = I × V", "R = V × I"],
-                    correct: 1,
-                    explanation: "Ohm's Law states that voltage (V) equals current (I) multiplied by resistance (R): V = I × R",
-                    topic: "Ohm's Law"
-                },
-                {
-                    id: 2,
-                    text: "Which of the following is an example of a double displacement reaction?",
-                    options: ["2H₂ + O₂ → 2H₂O", "Zn + 2HCl → ZnCl₂ + H₂", "NaCl + AgNO₃ → AgCl + NaNO₃", "CaCO₃ → CaO + CO₂"],
-                    correct: 2,
-                    explanation: "Double displacement reactions involve the exchange of ions between two compounds. NaCl + AgNO₃ → AgCl + NaNO₃ is an example",
-                    topic: "Double Displacement"
-                },
-                {
-                    id: 3,
-                    text: "According to the Ideal Gas Law, PV = nRT, what does R represent?",
-                    options: ["Radius of gas molecule", "Gas constant", "Ratio of specific heats", "Molecular weight"],
-                    correct: 1,
-                    explanation: "R is the universal gas constant, approximately 8.314 J/mol·K",
-                    topic: "Ideal Gas Law"
-                },
-                {
-                    id: 4,
-                    text: "Which quadrilateral has exactly one pair of parallel sides?",
-                    options: ["Rectangle", "Rhombus", "Trapezoid", "Square"],
-                    correct: 2,
-                    explanation: "A trapezoid is defined as a quadrilateral with exactly one pair of parallel sides",
-                    topic: "Quadrilateral"
-                },
-                {
-                    id: 5,
-                    text: "In a right triangle, the side opposite the right angle is called:",
-                    options: ["Adjacent", "Opposite", "Hypotenuse", "Base"],
-                    correct: 2,
-                    explanation: "The hypotenuse is the longest side of a right triangle, opposite the right angle",
-                    topic: "Triangles"
-                },
-                {
-                    id: 6,
-                    text: "A circuit has a voltage of 12V and a resistance of 4Ω. What is the current?",
-                    options: ["1A", "2A", "3A", "4A"],
-                    correct: 2,
-                    explanation: "Using Ohm's Law: I = V/R = 12V/4Ω = 3A",
-                    topic: "Ohm's Law"
-                },
-                {
-                    id: 7,
-                    text: "Which reaction is a double displacement reaction? AgNO₃ + NaCl → AgCl + NaNO₃",
-                    options: ["Synthesis", "Decomposition", "Single displacement", "Double displacement"],
-                    correct: 3,
-                    explanation: "This is a double displacement reaction where the cations and anions switch partners",
-                    topic: "Double Displacement"
-                },
-                {
-                    id: 8,
-                    text: "If 2 moles of gas occupy 44.8L at STP, what volume will 3 moles occupy at STP?",
-                    options: ["22.4L", "44.8L", "67.2L", "89.6L"],
-                    correct: 2,
-                    explanation: "At STP, 1 mole of gas occupies 22.4L. So 3 moles occupy 3 × 22.4 = 67.2L",
-                    topic: "Ideal Gas Law"
-                },
-                {
-                    id: 9,
-                    text: "A parallelogram with four equal sides is called a:",
-                    options: ["Rectangle", "Rhombus", "Trapezoid", "Kite"],
-                    correct: 1,
-                    explanation: "A rhombus is a parallelogram with four equal sides",
-                    topic: "Quadrilateral"
-                },
-                {
-                    id: 10,
-                    text: "In a 30-60-90 triangle, the ratio of sides is:",
-                    options: ["1:1:√2", "1:1:1", "1:2:3", "1:√3:2"],
-                    correct: 3,
-                    explanation: "In a 30-60-90 triangle, sides are in ratio 1 (opposite 30°) : √3 (opposite 60°) : 2 (hypotenuse)",
-                    topic: "Triangles"
-                },
-                {
-                    id: 11,
-                    text: "What current flows through a 10Ω resistor with 50V across it?",
-                    options: ["0.2A", "2A", "5A", "50A"],
-                    correct: 2,
-                    explanation: "I = V/R = 50V/10Ω = 5A",
-                    topic: "Ohm's Law"
-                },
-                {
-                    id: 12,
-                    text: "What are the products of: Na₂CO₃ + CaCl₂ → ?",
-                    options: ["NaCl + CaCO₃", "Na₂Cl₂ + CaCO₃", "NaCl₂ + CaCO₃", "Na₂Cl + CaCO₃"],
+                    id: 35,
+                    text: "Which of the following is a double displacement reaction?",
+                    options: ["HCl + NaOH → NaCl + H₂O", "2H₂ + O₂ → 2H₂O", "CaCO₃ → CaO + CO₂", "Zn + 2HCl → ZnCl₂ + H₂"],
                     correct: 0,
-                    explanation: "Double displacement: Na₂CO₃ + CaCl₂ → 2NaCl + CaCO₃",
-                    topic: "Double Displacement"
+                    explanation: "Double displacement involves exchange of ions: HCl + NaOH → NaCl + H₂O"
                 },
                 {
-                    id: 13,
-                    text: "If a gas at 300K and 1atm pressure is heated to 600K at constant volume, what is the new pressure?",
-                    options: ["0.5 atm", "1 atm", "2 atm", "4 atm"],
+                    id: 36,
+                    text: "Using the ideal gas law (PV = nRT), if volume is halved and temperature is doubled while pressure remains constant, what happens to n?",
+                    options: ["n doubles", "n halves", "n remains the same", "n quadruples"],
                     correct: 2,
-                    explanation: "At constant volume, P₁/T₁ = P₂/T₂. So 1/300 = P₂/600 → P₂ = 600/300 = 2 atm",
-                    topic: "Ideal Gas Law"
+                    explanation: "PV = nRT → n = PV/RT. When V→V/2 and T→2T, n = P(V/2)/R(2T) = (PV/2)/(2RT) = PV/(4RT) → n quarters"
                 },
                 {
-                    id: 14,
-                    text: "Which quadrilateral has diagonals that bisect each other at right angles?",
-                    options: ["Parallelogram", "Rectangle", "Rhombus", "Trapezoid"],
-                    correct: 2,
-                    explanation: "A rhombus has diagonals that bisect each other at right angles",
-                    topic: "Quadrilateral"
+                    id: 37,
+                    text: "In a quadrilateral, if three angles measure 85°, 95°, and 70°, what is the fourth angle?",
+                    options: ["110°", "100°", "120°", "90°"],
+                    correct: 0,
+                    explanation: "Sum of interior angles = 360°. 85+95+70=250. Fourth angle = 360-250=110°"
                 },
                 {
-                    id: 15,
-                    text: "The area of a triangle with base 10cm and height 8cm is:",
-                    options: ["20 cm²", "40 cm²", "60 cm²", "80 cm²"],
-                    correct: 1,
-                    explanation: "Area = (base × height)/2 = (10 × 8)/2 = 80/2 = 40 cm²",
-                    topic: "Triangles"
+                    id: 38,
+                    text: "Which triangle congruence theorem requires two angles and the included side?",
+                    options: ["ASA", "SAS", "SSS", "AAS"],
+                    correct: 0,
+                    explanation: "ASA: Angle-Side-Angle with the side between the angles"
+                },
+                {
+                    id: 39,
+                    text: "Convert 2.5 radians to degrees (nearest whole number)",
+                    options: ["143°", "150°", "120°", "180°"],
+                    correct: 0,
+                    explanation: "Degrees = radians × 180/π ≈ 2.5 × 57.3 ≈ 143.25°"
+                },
+                {
+                    id: 40,
+                    text: "What is the pH of a solution with [H⁺] = 1 × 10⁻⁵ M?",
+                    options: ["5", "9", "7", "10"],
+                    correct: 0,
+                    explanation: "pH = -log[H⁺] = -log(10⁻⁵) = 5"
+                },
+                {
+                    id: 41,
+                    text: "Which organelle is responsible for protein synthesis?",
+                    options: ["Ribosome", "Mitochondria", "Nucleus", "Golgi apparatus"],
+                    correct: 0,
+                    explanation: "Ribosomes are the sites of protein synthesis"
+                },
+                {
+                    id: 42,
+                    text: "What is the chemical symbol for gold?",
+                    options: ["Au", "Ag", "Fe", "Go"],
+                    correct: 0,
+                    explanation: "Au comes from Latin 'aurum'"
+                },
+                {
+                    id: 43,
+                    text: "In physics, what does Newton's Second Law state?",
+                    options: ["F = ma", "For every action, an equal and opposite reaction", "An object at rest stays at rest", "Energy cannot be created or destroyed"],
+                    correct: 0,
+                    explanation: "Newton's Second Law: Force = mass × acceleration"
+                },
+                {
+                    id: 44,
+                    text: "Which blood type is the universal donor?",
+                    options: ["O-", "O+", "AB+", "AB-"],
+                    correct: 0,
+                    explanation: "O negative lacks A, B, and Rh antigens"
+                },
+                {
+                    id: 45,
+                    text: "What is the main function of chloroplasts?",
+                    options: ["Photosynthesis", "Cellular respiration", "Protein synthesis", "Waste removal"],
+                    correct: 0,
+                    explanation: "Chloroplasts contain chlorophyll for photosynthesis"
+                },
+                {
+                    id: 46,
+                    text: "Which of these is a vector quantity?",
+                    options: ["Force", "Mass", "Temperature", "Time"],
+                    correct: 0,
+                    explanation: "Force has both magnitude and direction"
+                },
+                {
+                    id: 47,
+                    text: "What is the atomic number of an element?",
+                    options: ["Number of protons", "Number of neutrons", "Number of electrons", "Protons + neutrons"],
+                    correct: 0,
+                    explanation: "Atomic number = number of protons"
+                },
+                {
+                    id: 48,
+                    text: "Which kingdom do mushrooms belong to?",
+                    options: ["Fungi", "Plantae", "Animalia", "Protista"],
+                    correct: 0,
+                    explanation: "Mushrooms are fungi"
+                },
+                {
+                    id: 49,
+                    text: "What is the SI unit of electric current?",
+                    options: ["Ampere", "Volt", "Ohm", "Watt"],
+                    correct: 0,
+                    explanation: "Ampere (A) is the unit for electric current"
+                },
+                {
+                    id: 50,
+                    text: "Which process produces the most ATP per glucose molecule?",
+                    options: ["Aerobic respiration", "Anaerobic respiration", "Fermentation", "Glycolysis"],
+                    correct: 0,
+                    explanation: "Aerobic respiration produces 36-38 ATP, others produce less"
+                },
+                {
+                    id: 51,
+                    text: "What is the formula for density?",
+                    options: ["Mass/Volume", "Volume/Mass", "Mass × Volume", "Weight/Area"],
+                    correct: 0,
+                    explanation: "Density = Mass / Volume"
+                },
+                {
+                    id: 52,
+                    text: "Which of these is a decomposition reaction?",
+                    options: ["2H₂O → 2H₂ + O₂", "CH₄ + 2O₂ → CO₂ + 2H₂O", "2Na + Cl₂ → 2NaCl", "AgNO₃ + NaCl → AgCl + NaNO₃"],
+                    correct: 0,
+                    explanation: "Decomposition: one compound breaks into simpler substances"
+                },
+                {
+                    id: 53,
+                    text: "What is the function of white blood cells?",
+                    options: ["Fight infection", "Carry oxygen", "Blood clotting", "Transport nutrients"],
+                    correct: 0,
+                    explanation: "White blood cells are part of the immune system"
+                },
+                {
+                    id: 54,
+                    text: "Which layer of the atmosphere contains the ozone layer?",
+                    options: ["Stratosphere", "Troposphere", "Mesosphere", "Thermosphere"],
+                    correct: 0,
+                    explanation: "Ozone layer is in the stratosphere"
+                },
+                {
+                    id: 55,
+                    text: "What is the chemical formula for table salt?",
+                    options: ["NaCl", "H₂O", "CO₂", "C₆H₁₂O₆"],
+                    correct: 0,
+                    explanation: "Sodium chloride is NaCl"
+                },
+                {
+                    id: 56,
+                    text: "In genetics, what does DNA stand for?",
+                    options: ["Deoxyribonucleic Acid", "Di Nucleic Acid", "Deoxy Acid", "Double Nucleotide Acid"],
+                    correct: 0,
+                    explanation: "DNA = Deoxyribonucleic Acid"
+                },
+                {
+                    id: 57,
+                    text: "What is the speed of light in vacuum?",
+                    options: ["3 × 10⁸ m/s", "3 × 10⁵ m/s", "3 × 10³ m/s", "340 m/s"],
+                    correct: 0,
+                    explanation: "Approximately 3 × 10⁸ meters per second"
+                },
+                {
+                    id: 58,
+                    text: "Which scientist proposed the theory of relativity?",
+                    options: ["Albert Einstein", "Isaac Newton", "Marie Curie", "Galileo Galilei"],
+                    correct: 0,
+                    explanation: "Einstein developed the theory of relativity"
+                },
+                {
+                    id: 59,
+                    text: "What is the largest organ in the human body?",
+                    options: ["Skin", "Liver", "Brain", "Heart"],
+                    correct: 0,
+                    explanation: "Skin is the largest organ"
+                },
+                {
+                    id: 60,
+                    text: "Which planet is known as the Red Planet?",
+                    options: ["Mars", "Venus", "Jupiter", "Mercury"],
+                    correct: 0,
+                    explanation: "Mars appears red due to iron oxide on its surface"
+                },
+                {
+                    id: 61,
+                    text: "What is the chemical formula for sulfuric acid?",
+                    options: ["H₂SO₄", "HCl", "HNO₃", "H₃PO₄"],
+                    correct: 0,
+                    explanation: "Sulfuric acid is H₂SO₄"
+                },
+                {
+                    id: 62,
+                    text: "In the periodic table, elements in the same group have the same:",
+                    options: ["Number of valence electrons", "Atomic number", "Atomic mass", "Number of electron shells"],
+                    correct: 0,
+                    explanation: "Elements in a group have the same number of valence electrons"
+                },
+                {
+                    id: 63,
+                    text: "Which blood vessels carry blood away from the heart?",
+                    options: ["Arteries", "Veins", "Capillaries", "Venules"],
+                    correct: 0,
+                    explanation: "Arteries carry oxygenated blood away from the heart"
+                },
+                {
+                    id: 64,
+                    text: "What is the main function of the roots in plants?",
+                    options: ["Absorb water and minerals", "Photosynthesis", "Reproduction", "Gas exchange"],
+                    correct: 0,
+                    explanation: "Roots absorb water and minerals from soil"
+                },
+                {
+                    id: 65,
+                    text: "Which law states that pressure and volume are inversely proportional at constant temperature?",
+                    options: ["Boyle's Law", "Charles' Law", "Gay-Lussac's Law", "Avogadro's Law"],
+                    correct: 0,
+                    explanation: "Boyle's Law: P₁V₁ = P₂V₂ at constant temperature"
+                },
+                {
+                    id: 66,
+                    text: "What is the formula for kinetic energy?",
+                    options: ["½mv²", "mgh", "Fd", "mcΔT"],
+                    correct: 0,
+                    explanation: "Kinetic energy = ½ × mass × velocity²"
+                },
+                {
+                    id: 67,
+                    text: "Which process describes water moving from roots to leaves?",
+                    options: ["Transpiration", "Photosynthesis", "Respiration", "Evaporation"],
+                    correct: 0,
+                    explanation: "Transpiration pull moves water up through xylem"
                 }
             ],
             reading: [
                 {
-                    id: 1,
-                    text: "Read the passage: 'The Philippine eagle, also known as the monkey-eating eagle, is critically endangered with fewer than 400 pairs remaining in the wild. Deforestation and hunting have drastically reduced its habitat.' What is the main idea?",
-                    options: ["The Philippine eagle prefers to eat monkeys", "There are exactly 400 Philippine eagles left","The Philippine eagle is endangered due to habitat loss and hunting", "Deforestation only affects Philippine eagles"],
-                    correct: 2,
-                    explanation: "The main idea summarizes the key points about the eagle's endangered status and causes"
+                    id: 68,
+                    text: "Passage: 'The Industrial Revolution marked a significant turning point in history. Beginning in Britain in the late 18th century, it transformed economies from agrarian to industrial. This period saw the invention of steam engines, mechanized textile production, and the development of factory systems. While it led to unprecedented economic growth and technological advancement, it also brought about poor working conditions, child labor, and urban overcrowding.'",
+                    question: "What is the main idea of the passage?",
+                    options: ["The Industrial Revolution had both positive and negative effects", "Britain was the sole beneficiary of the Industrial Revolution", "The steam engine was the most important invention", "Child labor was the worst consequence of industrialization"],
+                    correct: 0,
+                    explanation: "The passage discusses both the technological advancements and the social problems resulting from the Industrial Revolution"
                 },
                 {
-                    id: 2,
-                    text: "'The scientist was meticulous in her research, checking every detail multiple times.' Based on context, what does 'meticulous' mean?",
-                    options: ["Quick and efficient", "Careless and sloppy", "Creative and imaginative", "Extremely careful and precise"],
-                    correct: 3,
-                    explanation: "The context about checking details multiple times suggests 'meticulous' means very careful"
+                    id: 69,
+                    text: "Passage: 'Climate change refers to long-term shifts in temperatures and weather patterns. While these shifts can be natural, human activities have been the main driver since the 1800s, primarily due to the burning of fossil fuels like coal, oil, and gas, which produces heat-trapping gases.'",
+                    question: "According to the passage, what is the primary cause of recent climate change?",
+                    options: ["Human activities", "Natural cycles", "Volcanic eruptions", "Solar radiation"],
+                    correct: 0,
+                    explanation: "The passage states 'human activities have been the main driver since the 1800s'"
                 },
                 {
-                    id: 3,
-                    text: "If a passage states 'All mammals are warm-blooded, and whales are mammals,' what can you infer about whales?",
-                    options: ["Whales are the largest mammals", "Whales are warm-blooded", "Whales live in the ocean", "All warm-blooded animals are whales"],
-                    correct: 1,
-                    explanation: "Following the logical chain: whales are mammals → all mammals are warm-blooded → therefore whales are warm-blooded"
+                    id: 70,
+                    text: "Passage: 'The concept of artificial intelligence dates back to ancient times, but modern AI began in the 1950s with Alan Turing's work. Today, AI systems can perform complex tasks like language translation, medical diagnosis, and autonomous driving. However, ethical concerns about job displacement, privacy, and decision-making transparency remain significant challenges.'",
+                    question: "What is the author's primary purpose in this passage?",
+                    options: ["To discuss the development and challenges of AI", "To promote the use of AI in medicine", "To criticize Alan Turing's contributions", "To predict the future of autonomous vehicles"],
+                    correct: 0,
+                    explanation: "The passage presents both the history/achievements and the challenges of AI"
                 },
                 {
-                    id: 4,
-                    text: "Which sentence best supports the claim that recycling reduces landfill waste?",
-                    options: ["Recycling bins are blue in many cities", "Recycling diverts materials from landfills, extending their usable lifespan", "Some people find recycling inconvenient", "Landfills can produce methane gas"],
-                    correct: 1,
-                    explanation: "This option directly connects recycling to reduced landfill use"
+                    id: 71,
+                    text: "Passage: 'Renewable energy sources like solar, wind, and hydroelectric power are crucial for sustainable development. Unlike fossil fuels, they produce minimal greenhouse gas emissions and are virtually inexhaustible. However, their intermittent nature and high initial costs present challenges for widespread adoption.'",
+                    question: "Based on the passage, what is a disadvantage of renewable energy?",
+                    options: ["Intermittent availability", "High greenhouse gas emissions", "Limited supply", "Low initial costs"],
+                    correct: 0,
+                    explanation: "The passage mentions 'intermittent nature and high initial costs' as challenges"
                 },
                 {
-                    id: 5,
-                    text: "What is the author's likely purpose in writing: 'Our city's parks are overcrowded, poorly maintained, and lack basic facilities. We must invest in green spaces for community health.'?",
-                    options: ["To describe all city parks", "To tell a story about a park", "To persuade officials to improve parks", "To explain how to build a park"],
-                    correct: 2,
-                    explanation: "The critical tone and call to action suggest a persuasive purpose"
+                    id: 72,
+                    text: "Passage: 'The human brain contains approximately 86 billion neurons. These specialized cells communicate through electrical and chemical signals, forming complex networks that enable thought, memory, and emotion. Neuroplasticity allows the brain to reorganize itself by forming new neural connections throughout life.'",
+                    question: "What does neuroplasticity refer to?",
+                    options: ["The brain's ability to reorganize itself", "The number of neurons in the brain", "The electrical nature of neural signals", "The chemical composition of brain tissue"],
+                    correct: 0,
+                    explanation: "The passage states 'Neuroplasticity allows the brain to reorganize itself'"
+                },
+                {
+                    id: 73,
+                    text: "Passage: 'Democracy is a system of government where citizens exercise power by voting. While it promotes freedom and equality, it requires an informed electorate and protection of minority rights to function effectively. Different democracies implement this system in various ways, from direct democracy to representative systems.'",
+                    question: "What is essential for a well-functioning democracy according to the passage?",
+                    options: ["An informed electorate and minority rights protection", "Direct voting on all issues", "A single political party", "Limited citizen participation"],
+                    correct: 0,
+                    explanation: "The passage states it requires 'an informed electorate and protection of minority rights'"
+                },
+                {
+                    id: 74,
+                    text: "Passage: 'Photosynthesis is the process by which plants convert light energy into chemical energy. Using chlorophyll, plants absorb sunlight and use it to transform carbon dioxide and water into glucose and oxygen. This process not only provides energy for the plant but also produces oxygen essential for most living organisms.'",
+                    question: "What are the products of photosynthesis?",
+                    options: ["Glucose and oxygen", "Carbon dioxide and water", "Light and chlorophyll", "Water and energy"],
+                    correct: 0,
+                    explanation: "The passage states plants transform CO₂ and water 'into glucose and oxygen'"
+                },
+                {
+                    id: 75,
+                    text: "Passage: 'The Great Barrier Reef, off Australia's northeast coast, is the world's largest coral reef system. Composed of over 2,900 individual reefs and 900 islands, it spans about 2,300 kilometers. This biodiversity hotspot faces threats from climate change, pollution, and ocean acidification.'",
+                    question: "What is the main subject of this passage?",
+                    options: ["The Great Barrier Reef's features and challenges", "Australia's tourism industry", "Coral biology", "Climate change effects worldwide"],
+                    correct: 0,
+                    explanation: "The passage describes the reef's characteristics and mentions threats it faces"
+                },
+                {
+                    id: 76,
+                    text: "Passage: 'Economic globalization refers to the increasing interdependence of world economies. Facilitated by trade liberalization, technological advances, and multinational corporations, it has led to greater efficiency and lower consumer prices. Critics argue it exacerbates inequality and undermines local cultures and environments.'",
+                    question: "Which word best describes the author's presentation of globalization?",
+                    options: ["Balanced", "Supportive", "Critical", "Indifferent"],
+                    correct: 0,
+                    explanation: "The passage presents both benefits and criticisms, showing balance"
+                },
+                {
+                    id: 77,
+                    text: "Passage: 'The Renaissance was a period of cultural, artistic, political, and economic rebirth following the Middle Ages. Beginning in 14th-century Italy, it emphasized humanism, classical learning, and scientific inquiry. Figures like Leonardo da Vinci and Michelangelo epitomized the 'Renaissance man' ideal of broad expertise.'",
+                    question: "What was emphasized during the Renaissance?",
+                    options: ["Humanism, classical learning, and scientific inquiry", "Religious doctrine and feudal systems", "Military expansion and conquest", "Agricultural development"],
+                    correct: 0,
+                    explanation: "The passage states it 'emphasized humanism, classical learning, and scientific inquiry'"
+                },
+                {
+                    id: 78,
+                    text: "Passage: 'Plate tectonics explains the movement of Earth's lithosphere. The theory suggests that continents drift and interact at boundaries, causing earthquakes, volcanoes, and mountain formation. Evidence includes continental fit, fossil distribution, and seafloor spreading patterns.'",
+                    question: "What phenomenon does plate tectonics help explain?",
+                    options: ["Earthquakes and volcanoes", "Ocean currents", "Atmospheric pressure", "Tidal patterns"],
+                    correct: 0,
+                    explanation: "The passage mentions earthquakes and volcanoes as results of plate interactions"
+                },
+                {
+                    id: 79,
+                    text: "Passage: 'The internet has revolutionized communication, making information instantly accessible worldwide. Social media platforms enable real-time connection but also raise concerns about misinformation, privacy violations, and mental health impacts. Digital literacy has become essential for navigating this complex landscape.'",
+                    question: "What is suggested as necessary for using the internet effectively?",
+                    options: ["Digital literacy", "Social media accounts", "Advanced technical skills", "Government regulation"],
+                    correct: 0,
+                    explanation: "The passage states 'Digital literacy has become essential'"
+                },
+                {
+                    id: 80,
+                    text: "Passage: 'Genetic engineering involves modifying an organism's DNA. Applications include developing disease-resistant crops, producing insulin, and potential gene therapies. Ethical debates center on safety, environmental impact, and the morality of altering life forms.'",
+                    question: "What is a benefit of genetic engineering mentioned in the passage?",
+                    options: ["Developing disease-resistant crops", "Creating new species", "Reducing biodiversity", "Eliminating ethical concerns"],
+                    correct: 0,
+                    explanation: "The passage lists 'developing disease-resistant crops' as an application"
+                },
+                {
+                    id: 81,
+                    text: "Passage: 'Biodiversity refers to the variety of life in a particular habitat. High biodiversity increases ecosystem resilience, productivity, and provides resources like food and medicine. Threats include habitat loss, pollution, invasive species, and climate change.'",
+                    question: "Why is biodiversity important according to the passage?",
+                    options: ["It increases ecosystem resilience and provides resources", "It makes ecosystems more vulnerable", "It reduces agricultural productivity", "It causes habitat loss"],
+                    correct: 0,
+                    explanation: "The passage states it 'increases ecosystem resilience, productivity, and provides resources'"
+                },
+                {
+                    id: 82,
+                    text: "Passage: 'The water cycle describes the continuous movement of water on, above, and below Earth's surface. Key processes include evaporation, condensation, precipitation, and collection. This cycle is crucial for distributing freshwater globally and sustaining life.'",
+                    question: "What is the primary purpose of this passage?",
+                    options: ["To explain the water cycle and its importance", "To compare different water sources", "To advocate for water conservation", "To describe water purification methods"],
+                    correct: 0,
+                    explanation: "The passage defines the water cycle and states its importance"
+                },
+                {
+                    id: 83,
+                    text: "Passage: 'Urbanization refers to the population shift from rural to urban areas. While it offers economic opportunities and access to services, it can lead to overcrowding, pollution, and strain on infrastructure. Sustainable urban planning is essential to manage these challenges.'",
+                    question: "What solution does the passage suggest for urbanization challenges?",
+                    options: ["Sustainable urban planning", "Limiting migration to cities", "Reducing economic opportunities", "Eliminating urban services"],
+                    correct: 0,
+                    explanation: "The passage states 'Sustainable urban planning is essential'"
+                },
+                {
+                    id: 84,
+                    text: "Passage: 'Antibiotics revolutionized medicine by treating bacterial infections. However, misuse and overuse have led to antibiotic resistance, where bacteria evolve to survive treatment. This global health threat requires responsible prescribing practices and new drug development.'",
+                    question: "What has caused antibiotic resistance according to the passage?",
+                    options: ["Misuse and overuse of antibiotics", "Insufficient drug development", "Lack of medical facilities", "Natural bacterial evolution without human influence"],
+                    correct: 0,
+                    explanation: "The passage states 'misuse and overuse have led to antibiotic resistance'"
+                },
+                {
+                    id: 85,
+                    text: "Passage: 'The scientific method involves systematic observation, measurement, experimentation, and hypothesis testing. This empirical approach minimizes bias and allows for reproducible results, forming the foundation of scientific progress.'",
+                    question: "What is the main advantage of the scientific method?",
+                    options: ["It minimizes bias and allows reproducibility", "It provides immediate answers to complex questions", "It requires minimal training to implement", "It eliminates the need for specialized equipment"],
+                    correct: 0,
+                    explanation: "The passage states it 'minimizes bias and allows for reproducible results'"
+                },
+                {
+                    id: 86,
+                    text: "Passage: 'Cultural heritage encompasses traditions, monuments, artifacts, and practices passed through generations. Preserving it maintains cultural identity and diversity but faces challenges from globalization, conflict, and natural disasters.'",
+                    question: "What does preserving cultural heritage help maintain?",
+                    options: ["Cultural identity and diversity", "Global uniformity", "Economic systems", "Political boundaries"],
+                    correct: 0,
+                    explanation: "The passage states preserving cultural heritage 'maintains cultural identity and diversity'"
+                },
+                {
+                    id: 87,
+                    text: "Passage: 'Entrepreneurship drives innovation and economic growth. Entrepreneurs identify market opportunities, take risks, and create solutions. Successful ventures create jobs, but many startups fail due to inadequate funding, market misjudgment, or operational challenges.'",
+                    question: "What is a benefit of entrepreneurship mentioned in the passage?",
+                    options: ["Job creation", "Guaranteed success", "Elimination of risk", "Reduced innovation"],
+                    correct: 0,
+                    explanation: "The passage states 'Successful ventures create jobs'"
+                },
+                {
+                    id: 88,
+                    text: "Passage: 'Mental health includes emotional, psychological, and social well-being. It affects how we think, feel, and act. Maintaining mental health requires attention to stress management, relationships, and professional support when needed.'",
+                    question: "What does the passage identify as important for mental health?",
+                    options: ["Stress management and relationships", "Financial success", "Physical appearance", "Academic achievement"],
+                    correct: 0,
+                    explanation: "The passage mentions 'attention to stress management, relationships, and professional support'"
+                },
+                {
+                    id: 89,
+                    text: "Passage: 'Sustainable development meets present needs without compromising future generations. It balances economic growth, environmental protection, and social equity. Implementing it requires policy changes, technological innovation, and behavioral shifts.'",
+                    question: "What three elements does sustainable development balance?",
+                    options: ["Economic growth, environmental protection, social equity", "Profit, exploitation, consumption", "Technology, policy, behavior", "Present needs, future needs, compromise"],
+                    correct: 0,
+                    explanation: "The passage states it 'balances economic growth, environmental protection, and social equity'"
+                },
+                {
+                    id: 90,
+                    text: "Passage: 'Literary fiction often explores complex themes and character development, prioritizing artistic expression over plot. While it may have smaller audiences than genre fiction, it offers profound insights into the human condition.'",
+                    question: "What distinguishes literary fiction according to the passage?",
+                    options: ["Focus on themes and character over plot", "Popularity with large audiences", "Formulaic story structures", "Exclusive focus on entertainment"],
+                    correct: 0,
+                    explanation: "The passage states it 'explores complex themes and character development' and 'prioritizes artistic expression over plot'"
+                },
+                {
+                    id: 91,
+                    text: "Passage: 'Supply and demand is an economic model determining price in a competitive market. When demand exceeds supply, prices tend to rise. Conversely, when supply exceeds demand, prices typically fall. This dynamic balances markets.'",
+                    question: "What happens when demand exceeds supply?",
+                    options: ["Prices rise", "Prices fall", "Supply increases", "Demand decreases"],
+                    correct: 0,
+                    explanation: "The passage states 'when demand exceeds supply, prices tend to rise'"
+                },
+                {
+                    id: 92,
+                    text: "Passage: 'Critical thinking involves objectively analyzing information to form reasoned judgments. It requires questioning assumptions, evaluating evidence, and considering multiple perspectives. This skill is essential for problem-solving and informed decision-making.'",
+                    question: "What is necessary for critical thinking?",
+                    options: ["Evaluating evidence and questioning assumptions", "Accepting information at face value", "Relying on intuition alone", "Following popular opinion"],
+                    correct: 0,
+                    explanation: "The passage states it 'requires questioning assumptions, evaluating evidence, and considering multiple perspectives'"
+                },
+                {
+                    id: 93,
+                    text: "Passage: 'The concept of human rights asserts that all people deserve dignity, freedom, and equality. International agreements like the Universal Declaration of Human Rights establish these principles. Implementation varies globally due to cultural, political, and economic differences.'",
+                    question: "What is the foundation of human rights?",
+                    options: ["Human dignity, freedom, and equality", "International agreements", "Cultural homogeneity", "Economic prosperity"],
+                    correct: 0,
+                    explanation: "The passage states human rights 'asserts that all people deserve dignity, freedom, and equality'"
+                },
+                {
+                    id: 94,
+                    text: "Passage: 'Nutritional science studies how food affects health and disease. A balanced diet provides essential nutrients: carbohydrates for energy, proteins for tissue repair, fats for hormone production, and vitamins/minerals for metabolic functions.'",
+                    question: "What is the role of carbohydrates according to the passage?",
+                    options: ["Providing energy", "Tissue repair", "Hormone production", "Metabolic functions"],
+                    correct: 0,
+                    explanation: "The passage states 'carbohydrates for energy'"
+                },
+                {
+                    id: 95,
+                    text: "Passage: 'The Fibonacci sequence (0,1,1,2,3,5,8...) appears in nature: sunflower seed patterns, pinecone spirals, and branching trees. This mathematical pattern demonstrates how mathematics underlies natural phenomena.'",
+                    question: "What is the significance of the Fibonacci sequence according to the passage?",
+                    options: ["It demonstrates mathematical patterns in nature", "It is exclusively a human invention", "It only appears in artificial structures", "It has no practical applications"],
+                    correct: 0,
+                    explanation: "The passage states it 'appears in nature' and 'demonstrates how mathematics underlies natural phenomena'"
+                },
+                {
+                    id: 96,
+                    text: "Passage: 'Active listening involves fully concentrating, understanding, responding, and remembering what is being said. It fosters effective communication by reducing misunderstandings and building trust. Techniques include maintaining eye contact and paraphrasing.'",
+                    question: "What is a benefit of active listening?",
+                    options: ["Reduces misunderstandings and builds trust", "Speeds up conversations", "Allows multitasking during conversations", "Makes communication more entertaining"],
+                    correct: 0,
+                    explanation: "The passage states it 'fosters effective communication by reducing misunderstandings and building trust'"
+                },
+                {
+                    id: 97,
+                    text: "Passage: 'The greenhouse effect is a natural process warming Earth's surface. Solar radiation passes through the atmosphere, is absorbed, and re-radiated as heat. Greenhouse gases trap some heat, maintaining habitable temperatures. Human activities are enhancing this effect, causing global warming.'",
+                    question: "What is the primary cause of current global warming according to the passage?",
+                    options: ["Human enhancement of the greenhouse effect", "Natural greenhouse effect alone", "Changes in solar radiation", "Volcanic activity"],
+                    correct: 0,
+                    explanation: "The passage states 'Human activities are enhancing this effect, causing global warming'"
+                },
+                {
+                    id: 98,
+                    text: "Passage: 'Microplastics are plastic particles smaller than 5mm. They originate from degraded plastic waste, synthetic clothing, and personal care products. These particles contaminate ecosystems, enter food chains, and pose health risks to organisms, including humans.'",
+                    question: "What is a source of microplastics?",
+                    options: ["Synthetic clothing", "Natural plant fibers", "Wood products", "Mineral water"],
+                    correct: 0,
+                    explanation: "The passage lists 'synthetic clothing' as a source"
+                },
+                {
+                    id: 99,
+                    text: "Passage: 'Epigenetics studies heritable changes in gene expression not involving DNA sequence alterations. Environmental factors like diet, stress, and toxins can activate or silence genes. This field explains how lifestyle can influence biological inheritance.'",
+                    question: "What can influence epigenetic changes?",
+                    options: ["Diet and stress", "DNA sequence mutations", "Genetic recombination alone", "Random chance"],
+                    correct: 0,
+                    explanation: "The passage states 'Environmental factors like diet, stress, and toxins' can cause changes"
+                },
+                {
+                    id: 100,
+                    text: "Passage: 'Artificial selection is humans breeding plants/animals for desired traits. Unlike natural selection, it's intentional and rapid. Examples include dog breeds and agricultural crops. This process demonstrates how selection pressures shape organisms.'",
+                    question: "How does artificial selection differ from natural selection?",
+                    options: ["It's intentional and rapid", "It occurs without human intervention", "It favors survival over aesthetics", "It takes millions of years"],
+                    correct: 0,
+                    explanation: "The passage states artificial selection is 'intentional and rapid' unlike natural selection"
                 }
             ]
         };
+
 
         // Initialize the test
         document.addEventListener('DOMContentLoaded', function() {
             generateTest();
             updateProgress();
-            startTimer(180 * 60); // 180 minutes in seconds
         });
 
         // Generate the test questions
@@ -743,21 +1233,21 @@
             const testContent = document.getElementById('test-content');
             
             // Create Math section
-            let mathSection = createSection('math', 'Mathematics');
+            let mathSection = createSection('math', 'Mathematics (34 Questions)');
             questions.math.forEach(q => {
                 mathSection.appendChild(createQuestion(q, 'math'));
             });
             testContent.appendChild(mathSection);
             
             // Create Science section
-            let scienceSection = createSection('science', 'Science');
+            let scienceSection = createSection('science', 'Science (33 Questions)');
             questions.science.forEach(q => {
                 scienceSection.appendChild(createQuestion(q, 'science'));
             });
             testContent.appendChild(scienceSection);
             
             // Create Reading section
-            let readingSection = createSection('reading', 'Reading Comprehension');
+            let readingSection = createSection('reading', 'Reading Comprehension (33 Questions)');
             questions.reading.forEach(q => {
                 readingSection.appendChild(createQuestion(q, 'reading'));
             });
@@ -820,16 +1310,17 @@
             questionHeader.appendChild(questionNumber);
             questionHeader.appendChild(subjectTag);
             
-            if (question.topic) {
-                const topicTag = document.createElement('span');
-                topicTag.className = 'topic-tag';
-                topicTag.textContent = question.topic;
-                questionHeader.appendChild(topicTag);
-            }
-            
             const questionText = document.createElement('div');
             questionText.className = 'question-text';
-            questionText.textContent = question.text;
+            questionText.textContent = subject === 'reading' ? question.question : question.text;
+            
+            // Add passage for reading questions
+            if (subject === 'reading' && question.text) {
+                const passageDiv = document.createElement('div');
+                passageDiv.className = 'passage';
+                passageDiv.textContent = question.text;
+                questionDiv.appendChild(passageDiv);
+            }
             
             const optionsDiv = document.createElement('div');
             optionsDiv.className = 'options';
@@ -841,7 +1332,7 @@
                 
                 const radio = document.createElement('input');
                 radio.type = 'radio';
-                radio.name = `question-${question.id}-${subject}`;
+                radio.name = `question-${subject}-${question.id}`;
                 
                 const optionText = document.createElement('span');
                 optionText.textContent = option;
@@ -854,7 +1345,7 @@
             const explanationDiv = document.createElement('div');
             explanationDiv.className = 'explanation';
             explanationDiv.textContent = question.explanation;
-            explanationDiv.id = `explanation-${question.id}-${subject}`;
+            explanationDiv.id = `explanation-${subject}-${question.id}`;
             
             questionDiv.appendChild(questionHeader);
             questionDiv.appendChild(questionText);
@@ -874,8 +1365,10 @@
             // Add selected class to the chosen option
             if (selectedOption !== undefined) {
                 const selectedOptionDiv = questionDiv.querySelector(`.option[data-option="${selectedOption}"]`);
-                selectedOptionDiv.classList.add('selected');
-                selectedOptionDiv.querySelector('input').checked = true;
+                if (selectedOptionDiv) {
+                    selectedOptionDiv.classList.add('selected');
+                    selectedOptionDiv.querySelector('input').checked = true;
+                }
             }
         }
 
@@ -898,38 +1391,18 @@
             document.getElementById('answered-count').textContent = answered;
         }
 
-        // Timer function
-        function startTimer(duration) {
-            let timer = duration, minutes, seconds;
-            const timerElement = document.getElementById('timer');
-            
-            const interval = setInterval(function() {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-                
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-                
-                timerElement.textContent = "Time: " + minutes + ":" + seconds;
-                
-                if (--timer < 0) {
-                    clearInterval(interval);
-                    submitTest();
-                    timerElement.textContent = "Time's up!";
-                }
-            }, 1000);
-        }
-
         // Submit the test
         function submitTest() {
             let correct = 0;
             let total = 0;
-            let subjectScores = {};
+            let subjectScores = {
+                math: { correct: 0, total: questions.math.length },
+                science: { correct: 0, total: questions.science.length },
+                reading: { correct: 0, total: questions.reading.length }
+            };
             
             // Calculate scores
             for (const subject in questions) {
-                subjectScores[subject] = { correct: 0, total: questions[subject].length };
-                
                 questions[subject].forEach(q => {
                     total++;
                     if (q.selected === q.correct) {
@@ -947,7 +1420,7 @@
                         }
                         
                         // Show explanation
-                        document.getElementById(`explanation-${q.id}-${subject}`).style.display = 'block';
+                        document.getElementById(`explanation-${subject}-${q.id}`).style.display = 'block';
                     }
                 });
             }
@@ -957,24 +1430,42 @@
             const percentage = Math.round((correct / total) * 100);
             scoreDiv.textContent = `Your Score: ${correct}/${total} (${percentage}%)`;
             
+            // Add feedback based on score
+            const feedbackDiv = document.getElementById('feedback');
+            if (percentage >= 90) {
+                feedbackDiv.textContent = "Excellent work! You're well-prepared for the DOST Scholarship exam.";
+                feedbackDiv.style.background = "#d4edda";
+            } else if (percentage >= 70) {
+                feedbackDiv.textContent = "Good job! You have a solid foundation but could use some more practice.";
+                feedbackDiv.style.background = "#d1ecf1";
+            } else if (percentage >= 50) {
+                feedbackDiv.textContent = "Keep practicing! Focus on your weaker areas to improve your score.";
+                feedbackDiv.style.background = "#fff3cd";
+            } else {
+                feedbackDiv.textContent = "Don't get discouraged! Use this as a starting point and focus on fundamental concepts.";
+                feedbackDiv.style.background = "#f8d7da";
+            }
+            
             const breakdownDiv = document.getElementById('breakdown');
             breakdownDiv.innerHTML = '';
             
-            for (const subject in subjectScores) {
-                const subjectScore = document.createElement('div');
-                subjectScore.className = 'subject-score';
-                
-                const subjectName = document.createElement('h3');
-                subjectName.textContent = subject.charAt(0).toUpperCase() + subject.slice(1);
-                
-                const score = document.createElement('p');
-                const subjectPercentage = Math.round((subjectScores[subject].correct / subjectScores[subject].total) * 100);
-                score.textContent = `${subjectScores[subject].correct}/${subjectScores[subject].total} (${subjectPercentage}%)`;
-                
-                subjectScore.appendChild(subjectName);
-                subjectScore.appendChild(score);
-                breakdownDiv.appendChild(subjectScore);
-            }
+            // Math score
+            const mathScore = document.createElement('div');
+            mathScore.className = 'subject-score math-score';
+            mathScore.innerHTML = `<h3>Mathematics</h3><p>${subjectScores.math.correct}/${subjectScores.math.total} (${Math.round((subjectScores.math.correct / subjectScores.math.total) * 100)}%)</p>`;
+            breakdownDiv.appendChild(mathScore);
+            
+            // Science score
+            const scienceScore = document.createElement('div');
+            scienceScore.className = 'subject-score science-score';
+            scienceScore.innerHTML = `<h3>Science</h3><p>${subjectScores.science.correct}/${subjectScores.science.total} (${Math.round((subjectScores.science.correct / subjectScores.science.total) * 100)}%)</p>`;
+            breakdownDiv.appendChild(scienceScore);
+            
+            // Reading score
+            const readingScore = document.createElement('div');
+            readingScore.className = 'subject-score reading-score';
+            readingScore.innerHTML = `<h3>Reading</h3><p>${subjectScores.reading.correct}/${subjectScores.reading.total} (${Math.round((subjectScores.reading.correct / subjectScores.reading.total) * 100)}%)</p>`;
+            breakdownDiv.appendChild(readingScore);
             
             // Show results section
             document.getElementById('results').style.display = 'block';
@@ -1007,6 +1498,9 @@
             
             // Reset progress
             updateProgress();
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
 
         // Scroll to a section
